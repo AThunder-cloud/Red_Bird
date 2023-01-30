@@ -1,0 +1,18 @@
+{% load static %}
+<!-- <form method="POST" action="">
+	{% csrf_token %}
+	<p>Are you sure you want to delete "{{obj}}"?</p>
+	<a href="{{request.META.HTTP_REFERER}}">GO BACk</a>
+	<input type="submit" value="Confirm">
+</form> -->
+
+{% block content %}       
+<link rel="stylesheet" href="{% static 'css/delete-modal.css' %}">
+<div class="popup" id="popup">
+	<img src="{% static 'default-img/Chopper.jpeg' %}">
+	<h2>Thank You</h2>
+	<p id="mytext"></p><p id="mytext2"></p>
+	<button type="button" class="close" onclick="closeModal()">close</button>
+</div>
+<script src="{% static 'js/delete.js' %}"></script>
+{% endblock content %}

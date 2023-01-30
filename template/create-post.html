@@ -1,0 +1,15 @@
+{% load crispy_forms_tags %}
+<div>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form|crispy}}
+        <input type="submit" value="Create">
+        <button type="submit">Create</button>
+    </form>
+</div>
+<!-- <input type="text" name="post_title" placeholder="Title..">
+<textarea 
+class="creating_text" type="text" name="creating_text"
+rows="5"
+placeholder="Write your thought here...."></textarea>
+<input type="image" name="post_image"> -->

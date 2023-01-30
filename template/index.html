@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viweport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Concert+One&family=Damion&family=Kalam:wght@300&family=Macondo&family=Marck+Script&family=Ubuntu+Mono:wght@700&family=Yanone+Kaffeesatz&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/home-page.css' %}">
+    <title>Red Bird</title>
+</head>
+<body scroll="no" style="overflow:hidden" class="main-page">
+    {% block content %}
+    <!-- Delete Modal -->
+    {% include 'delete.html' %}
+    
+    <!-- main page start -->
+    <div class="main-section">
+      <div class="navigation-tab">{% include 'navigation.html' %}</div>
+    <!-- main page end -->
+    <!-- feed container start -->
+      <div class="feed-container">
+        <!-- search section start -->
+        <div class="search-tab">{% include 'search.html' %} </div>
+        <!-- search section end -->
+
+        <!-- feed section start -->
+        <div class="feed-section">
+
+          <!-- post section  -->
+          <div class="post-tab">{% include 'post-body.html' %} </div>
+          <!-- activity section -->
+          <div class="activity-tab"> </div>
+        <!-- feed section end -->
+        </div>
+       </div>
+      <!-- feed container end -->
+    </div>
+    {% endblock content %}
+</body>
+</html>

@@ -1,0 +1,36 @@
+{% load static %}
+<style>
+    .profile-container{
+        display: grid;
+        gap: 10px;
+        padding: 5px;
+    }
+    .profile-tab{
+        width: auto;
+        background:#48ff3a;
+        color: white;
+        border-radius: 9px;
+        border: 1px solid #48ff3a;
+        padding: 2px;
+    }
+    .profile-tab a{
+        text-decoration: none;
+        text-align: center;
+        color:rgb(0, 0, 0);
+    }
+</style>
+
+<div class="profile-container">
+    <div>
+
+    </div>
+</div>
+
+<div class="profile-container">
+    <div  class="profile-tab">
+        <a href="#"><img class="nav-profile-img" src="{% static 'images/Chopper.jpeg' %}" alt="">Chopper</a>
+    </div>
+    <div  class="profile-tab">
+        <a href="#"><img class="nav-profile-img" src="{% static 'images/Chopper.jpeg' %}" alt="">Chopper</a>
+    </div>
+</div>

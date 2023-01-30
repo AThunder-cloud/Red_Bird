@@ -1,0 +1,27 @@
+<style>
+    .search-div{
+        display: grid;
+        width: 40%;
+        height: fit-content;
+        margin-top:7px;
+        margin-left: 5px;
+
+    }
+    .search-div form input{
+        background-color:  rgba(72, 255, 121, 0.779);
+        color: rgba(72, 255, 121, 0.779);
+        width:100%;
+        height:20px ;
+        border-radius: 10px;
+        text-align: center;
+        font-size: 15px;
+        border-radius: 10px;
+    }
+    
+</style>
+
+<div class="search-div">
+    <form method="GET" action="{% url 'index' %}">
+        <input type="text" name="q" placeholder="Search: For example Funny...">
+    </form>
+</div>

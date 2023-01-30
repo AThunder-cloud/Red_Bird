@@ -1,0 +1,54 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/navigation.css' %}">
+
+
+<div class="brand-name-div">
+    <img src="{% static 'default-img/Name1.png' %}" alt="No Image Found">
+</div>
+<div class="navigation-div">
+    <ul>
+        <li>
+            <a class="nav-item" href="{% url 'index' %}">
+            <img src="{% static 'default-img/icons/Home-icon.svg' %}">
+            <h4>Home</h4></a>
+        </li>
+        <li>
+            <a href="#">
+            <img src="{% static 'default-img/icons/Search-icon.svg' %}">
+            <h4>Discover</h4></a>
+        </li>
+        <li>
+            <a href="{% url 'create-post' %}">
+            <img src="{% static 'default-img/icons/Edit-icon.svg' %}">
+            <h4>Create</h4></a>
+        </li>
+        <li>
+            <a href="{% url 'login' %}">
+            <img src="{% static 'default-img/icons/Login-icon.svg' %}">
+            <h4>Login</h4></a>
+        </li>
+        <li>
+            <a href="{% url 'logout' %}">
+            <img src="{% static 'default-img/icons/Logout-icon.svg' %}">
+            <h4>Logout</h4></a>
+        </li>
+    </ul>
+</div>
+
+<div class="profile-div">
+    {% if request.user.is_authenticated%}
+    <img src="{% static 'default-img/icons/Profile-circle-icon.svg' %}">
+    <h3>@{{user}}</h3>
+    {% else %}
+    <h4>AnonymouseUser</h4>
+    {% endif %}
+
+    <!-- Message area -->
+    {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+        <li><h3>{{ message }}</h3></li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+</div>

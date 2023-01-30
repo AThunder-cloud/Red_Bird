@@ -1,0 +1,90 @@
+.brand-name-div{
+    width:fit-content;
+    height:fit-content;
+    background-color:rgb(71, 71, 71);
+    padding: 2px;
+}
+.brand-name-div img{
+    object-position: center;
+    height:auto;
+    width: 190px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.navigation-div{
+    background-color: rgb(73 76 97);
+}
+.navigation-div ul{
+    display: grid;
+    list-style: none;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 0;
+}
+.navigation-div ul li{
+    margin-top:15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    border:1px solid transparent;
+}
+
+.navigation-div ul li:hover{
+    background-color: rgb(255, 112, 112);
+    border:1px solid rgb(0, 0, 0) ;
+}
+
+.navigation-div ul li a{
+    display:grid;
+    grid-template-columns:1fr 2fr;
+    justify-content: center;
+    text-align: center;
+    height: auto;
+    color: rgb(41, 155, 255);
+    text-decoration: none;
+    
+    font: bold;
+    padding:7px ;
+}
+.navigation-div ul li a h4{
+    padding: 0;
+    margin: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.navigation-div ul li a img {
+    background-color:transparent;
+    object-position: center;
+    width:25px ;
+    height:25px;
+    margin-right:7px ; 
+}
+
+.navigation-div h5{
+    text-align: center;
+    color: rgb(0, 109, 204);
+    text-decoration: none;
+    margin:20px 5px 5px 5px;
+    font: bold;
+}
+.profile-div{
+    display: flex;
+    flex-direction: column;
+    background-color: crimson;
+    padding: 10px;
+    row-gap: 10px;
+}
+.profile-div img{
+    object-position: center;
+    width:60px;
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.profile-div h3{
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}

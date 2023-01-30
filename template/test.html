@@ -1,0 +1,44 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/test.css' %}">
+
+<div class="test-div-container">
+    <!-- user name section -->
+    <div  class="test-element-user">
+        <img src="{% static 'default-img/icons/Profile-circle-icon.svg' %}" alt="" >
+        <a href="#">Name</a><h6>December 02 2022</h6>
+    </div>
+    <!-- user name section ends -->
+    <div>
+        <textarea readonly id="test-element-title">An Artist</textarea>
+    </div>
+    <div class="test-div-content-area">
+            <!-- written content section -->
+        <div>
+            <textarea readonly spellcheck="disable" class="test-element-text" name="test-element-text" >
+A artist can see abstract in mess
+Finding flaws in the best
+Beautiful is absolute perfect
+Relaity always have some defect
+Waht is reality he isn't aware 
+No dream, He seek colourful nightmares 
+</textarea>
+        </div>
+        <!-- wrriten content section ends -->
+        <!-- img section start  -->
+        <!-- <div class="test-element-img">
+        </div> -->
+        <!-- img section ends -->
+
+    </div>
+   
+    <div class="test-fotter">
+        <div>
+            <h6>December 2 2022</h6>
+        </div>
+        <div>
+            <input type="button" id="Like" name="Like" value="❤️" class="test-button">
+            <input type="button" id="Comment" name="Comment" value="💬" class="test-button">
+        </div>
+    </div>
+</div>
+<hr>

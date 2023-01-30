@@ -1,0 +1,53 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/post-defination.css' %}">
+<link rel="stylesheet" href="{% static 'css/delete-modal.css' %}">
+
+
+<!-- post fetching block start -->
+{%  for post in posts %}
+<div class="post-div-container">
+    <!-- Post Head Section -->
+    <div  class="post-element-user">
+        <img src="{% static 'default-img/icons/Profile-circle-icon.svg' %}" alt="" >
+        <a href="#">Name</a><h6>{{post.created| date:"F d Y"}}</h6>
+        <button type="submit" class="open-delete" onclick="deleteModal({value1:'{{post.post_title}}',value2:'{{post.id}}'})">Delete</button>
+    </div>
+    <div>
+        {% if post.post_title != 'No title'  %}
+        <textarea readonly id="post-element-title">{{post.post_title}}</textarea>
+        {% endif %}
+    </div>
+    <!-- Post Head section ends -->
+
+    <!-- Post Body Section -->
+    <div class="post-div-content-area">
+            <!-- written content section -->
+        <div>
+            <textarea readonly spellcheck="disable" name="post-element-text" >{{post.text_body}}</textarea>
+        </div>
+        <!-- wrriten content section ends -->
+        <!-- img section start  -->
+        <div class="post-element-img">
+            <img onerror="this.style.display = 'none';" width="100px" src="{{post.image.url}}">
+        </div>
+        <!-- img section ends -->
+    </div>
+    <!-- Post  Body Section Ends -->
+
+    <!-- Post Foot section  -->
+    <div class="post-fotter">
+        <div>
+            <h6>{{post.created | date:"F d Y"}}</h6>
+        </div>
+        <div>
+            <input type="button" id="Like" name="Like" value="❤️" class="post-button">
+            <input type="button" id="Comment" name="Comment" value="💬" class="post-button">
+        </div>
+    </div>
+    <!-- Post foot section ends  -->
+</div>
+<br>
+
+{% endfor %}
+
+<script src="{% static 'js/delete.js' %}"></script>
