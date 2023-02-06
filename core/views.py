@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from django.http import HttpResponse
@@ -7,6 +7,7 @@ from .models import Profile,Post
 from django.db.models import Q 
 from django.contrib.auth import authenticate, login, logout
 from .forms import PostForm , GenreForm
+from django.http import JsonResponse
 # Create your views here.
 
 
@@ -110,8 +111,9 @@ def create_post(request):
 # 		return redirect('index')
 # 	return render(request,'delete.html',{'obj': post})
 
-def delete(request):
-	object_id = request.POST.get('object_id')
-	post = Post.objects.get(pk = object_id)
-	Post.delete()
-	return redirect('index')
+def delete_post(request):
+	post_id = request.POST.get('post_id')
+	post_title = request.POST.get('post_title')
+	post = get_object_or_404(Post, id=post_id,post_title=post_title)
+	post.delete()
+	return redirect('index') and JsonResponse({'status':'success'})

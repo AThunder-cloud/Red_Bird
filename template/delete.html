@@ -9,10 +9,10 @@
 {% block content %}       
 <link rel="stylesheet" href="{% static 'css/delete-modal.css' %}">
 <div class="popup" id="popup">
-	<img src="{% static 'default-img/Chopper.jpeg' %}">
-	<h2>Thank You</h2>
-	<p id="mytext"></p><p id="mytext2"></p>
+	<h2>Are you sure you wnat to delete <p id="mytext2"></p>?</h2>
+	<p id="mytext"></p>
 	<button type="button" class="close" onclick="closeModal()">close</button>
+	<button type="button" class="delete" onclick="passValues()"><a href="{% url 'delete' %}">Delete</a></button>
 </div>
 <script src="{% static 'js/delete.js' %}"></script>
 {% endblock content %}
