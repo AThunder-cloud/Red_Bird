@@ -10,7 +10,7 @@
     <div  class="post-element-user">
         <img src="{% static 'default-img/icons/Profile-circle-icon.svg' %}" alt="" >
         <a href="#">Name</a><h6>{{post.created| date:"F d Y"}}</h6>
-        <button type="submit" class="open-delete" onclick="deleteModal({value1:'{{post.id}}',value2:'{{post.post_title}}'})">Delete</button>
+        <button type="submit" class="open-delete" onclick="deleteModal({value1:'{{post.id}}',value2:'{{post.post_title}}',value3:'{{ csrf_token }}'})">Delete</button>
     </div>
     <div>
         {% if post.post_title != 'No title'  %}

@@ -13,10 +13,11 @@
 // popup.style.visibility="hidden"; 
 // }
 // var openButton = document.querySelector('.open-delete')
-var popup = document.querySelector('.popup')
-// var closeButton = document.querySelector('.close')
-let post_id;
-let post_title;
+var popup = document.querySelector('.popup');
+var delBtn = document.querySelector('.Confirm-delete');
+var post_id;
+var post_title;
+var csrf_token;
 
 function deleteModal(postId){
     popup.style.visibility="visible";
@@ -24,19 +25,30 @@ function deleteModal(postId){
     popup.style.transform="translate(-50%,-50%) scale(1)";
     post_id = postId.value1;
     post_title = postId.value2;
+    csrf_token = postId.value3;
     document.getElementById("mytext").innerHTML = post_id;
     document.getElementById("mytext2").innerHTML = post_title;
 }
 
+
+
 function passValues(){
-    alert("del")
-    var data ={'post_id':post_id,'post_title':post_title};
+    // var data ={'post_id':post_id,'post_title':post_title};
+    alert(csrf_token)
     $.ajax({
+        url:delBtn.dataset.url,
         type:'POST',
-        url:'Red_Bird/core/views.py/',
-        data: data,
-        success:function(response){
+        data: {
+            'post_id':post_id,  
+            csrfmidddlewaretoken:csrf_token,         
+        },
+        contentType:"application/json; charset=utf-8",
+        dataType:"json",
+        success :function(response){
             alert(response);
+        },
+        error: function(xhr,status,error){
+            alert("unsuccessfull...!!!")
         }
     });
 }

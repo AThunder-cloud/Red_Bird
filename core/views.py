@@ -8,6 +8,7 @@ from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout
 from .forms import PostForm , GenreForm
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 
@@ -111,9 +112,12 @@ def create_post(request):
 # 		return redirect('index')
 # 	return render(request,'delete.html',{'obj': post})
 
-def delete_post(request):
-	post_id = request.POST.get('post_id')
-	post_title = request.POST.get('post_title')
-	post = get_object_or_404(Post, id=post_id,post_title=post_title)
-	post.delete()
-	return redirect('index') and JsonResponse({'status':'success'})
+def delete(request):
+	print('deleting......')
+	if request.method == 'POST':
+		post_id = request.POST.get('post_id')
+		print(f"post={post_id}")
+		post = get_object_or_404(Post, id=post_id)
+		post.delete()
+		return JsonResponse({'success':True}) and render(request,'index')
+	return JsonResponse({"success":False})
