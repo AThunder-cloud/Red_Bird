@@ -8,9 +8,6 @@ User = get_user_model()
 # Create your models here.
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-
-    first_name = models.CharField(max_length=255, default="Arpit")
-    last_name = models.CharField(max_length=255, default="Singh")
     bio = models.TextField(max_length=250,blank=True)
     profile_img = models.ImageField(upload_to='profile_images', default='defult-profile.png')
     location = models.CharField(max_length=100, blank=True)

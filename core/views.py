@@ -4,52 +4,62 @@ from django.contrib import messages
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .models import Profile,Post
-from django.db.models import Q 
 from django.contrib.auth import authenticate, login, logout
 from .forms import PostForm , GenreForm
 from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 
-def registerPage(request):
-	form = UserCreationForm()
+def signup(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password']
+        password2 = request.POST['cpassword']
+
+        if password == password2:
+            if User.objects.filter(email=email).exists():
+                messages.info(request, 'Email Taken')
+                return redirect('signup')
+            elif User.objects.filter(username=username).exists():
+                messages.info(request, 'Username Taken')
+                return redirect('signup')
+            else:
+                user = User.objects.create_user(username=username, email=email, password=password)
+                user.save()
+
+                #log user in and redirect to settings page
+                user_login = auth.authenticate(username=username, password=password)
+                auth.login(request, user_login)
+
+                #create a Profile object for the new user
+                user_model = User.objects.get(username=username)
+                new_profile = Profile.objects.create(user=user_model)
+                new_profile.save()
+                return redirect('index')
+        else:
+            messages.info(request, 'Password Not Matching')
+            return redirect('signup')
+        
+    else:
+        return render(request, 'signup.html')
+
+def signin(request):
 	if request.method == 'POST':
-		form = UserCreationForm(request.POST)
-		if form.is_valid():
-			user = form.save(commit=False)
-			user.username = user.username.lower()
-			user.save()
-			login(request,user)
-			return redirect('index')
-		else:
-			messages.error(request,'An error occured during registration')
-	return render(request,'login_register.html',{'form':form})
-
-def loginPage(request):
-	page = 'login' # login  is a prebulid function 
-	if request.user.is_authenticated:
-		return redirect('index')
-	if request.method=='POST':
-		username=request.POST.get('username').lower()
-		password=request.POST.get('password')
-
-		try:
-			user= User.objects.get(username=username)
-		except:
-			messages.error(request,'User Does Not Exits')
-		user = authenticate(request, username=username,password=password)
+		username = request.POST['username']
+		password = request.POST['password']
+		user = auth.authenticate(username=username, password=password)
 		if user is not None:
-			login(request,user)
+			auth.login(request,user)
 			return redirect('index')
 		else:
-			messages.error(request,'Username and Password does not exist')
-	context={'page': page}
-	return render(request,'user-account.html' , context)
+			messages.error(request,'Password not matching')
+			redirect('/loginPage')
+	return render(request,'signin.html')
 
-def logoutUser(request):
+def signout(request):
 	if request.user.is_authenticated:
-		logout(request)
+		auth.logout(request)
 		return redirect('index')
 	else:
 		messages.info(request, 'User is not loged in')
@@ -92,25 +102,6 @@ def create_post(request):
 		"form" : form
 	}
 	return render(request, 'create-post.html', context)
-
-# def create_post(request):
-# 	if request.method == "POST":
-# 		body = Post.objects.create(
-#         post_title=request.POST.get('post_title'),
-#         text_body=request.POST.get('creating_text')
-#         )
-# 		if body.is_valid():
-# 			post.save()
-# 			return redirect('index.html')
-# 		return redirect('create-post.html')
-# 	return render(request, 'create-post.html')
-
-# def delete(request,pk):
-# 	post = Post.objects.get(id=pk)
-# 	if request.method == 'POST':
-# 		post.delete()
-# 		return redirect('index')
-# 	return render(request,'delete.html',{'obj': post})
 
 def delete(request):
 	print('deleting......')
