@@ -90,18 +90,18 @@ def post(request):
 	return render(request, 'post-body.html',context)
 
 def create_post(request):
-	form = PostForm() 
+	form = PostForm()
 	genre = GenreForm()
 	if request.method  == "POST":
-		form = PostForm(request.POST)
+		form = PostForm(request.POST,request.FILES)
 		if form.is_valid():
 			post = form.save(commit=False)
+			post.author = request.user.profile
 			post.save()
-			return redirect('/')
-	context = {
-		"form" : form
-	}
-	return render(request, 'create-post.html', context)
+			return redirect('index')
+		else:
+			form = PostForm()
+	return render(request, 'create-post.html', {'form':form})
 
 def delete(request):
 	print('deleting......')

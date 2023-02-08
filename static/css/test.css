@@ -16,7 +16,7 @@
     width:auto;
     height:2em; 
     /* background-image:linear-gradient(30deg,rgb(248, 140, 140), rgb(151, 151, 255),rgb(255, 122, 184)); */
-    background-image:linear-gradient(30deg,rgb(231, 102, 160), rgb(125, 99, 231),rgb(51, 56, 108));
+    background-image:linear-gradient(30deg,rgb(230, 81, 81), rgb(91, 55, 234),rgb(46, 45, 45));
     color:black;
     cursor: pointer; 
     justify-content:flex-start;
