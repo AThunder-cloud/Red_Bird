@@ -1,4 +1,5 @@
 {% load static %}
+{% load profile_img_tag %}
 <link rel="stylesheet" href="{% static 'css/navigation.css' %}">
 
 
@@ -52,7 +53,7 @@
 
 <div class="profile-div">
     {% if request.user.is_authenticated%}
-    <img src="{% static 'default-img/icons/Profile-circle-icon.svg' %}">
+    <img src="{% profile_img user.id %}">
     <h3>@{{user}}</h3>
     {% else %}
     <h4>AnonymouseUser</h4>

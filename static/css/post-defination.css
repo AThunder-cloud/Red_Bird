@@ -24,7 +24,7 @@
     
 }
 .post-element-user img{
-    object-position: center;
+    object-fit: cover;   /* to fit img in center*/
     width:fit-content ;
     max-width: 25px;
     max-height: 1.5em;

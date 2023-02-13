@@ -1,6 +1,14 @@
+@font-face {
+  font-family:"UbuntuMono" ;
+  src: url("/static/fonts/Ubuntu_Mono/UbuntuMono-Regular.ttf") format("truetype");
+
+  font-weight: 1000;
+  font-style: normal;
+}
 *{
   margin: 0;
   padding: 0;
+  font-family:"UbuntuMono",sans-serif;
 }
 html{
   /* background-image:url(/static/default-img/circle-background.png); */
@@ -11,10 +19,6 @@ html{
   background-color: rgb(106, 170, 255);
   scroll-behavior: smooth;
 
-}
-body{
-  margin: 0;
-   /* font-family: 'Ubuntu Mono', monospace; */
 }
 
 .main-section {
@@ -29,8 +33,6 @@ body{
   border:1px solid black ;
   width:200px;
   height:100vh;
-  /* border-top-right-radius: 10px;
-  border-bottom-right-radius:10px; */
   display:grid;
   grid-template-rows:max-content 60% 40% ;
 }

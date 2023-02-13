@@ -8,7 +8,7 @@
 <div class="post-div-container">
     <!-- Post Head Section -->
     <div  class="post-element-user">
-        <img src="{% static 'default-img/icons/Profile-circle-icon.svg' %}" alt="" >
+        <img src="{{post.author.profile_img.url}}" alt="" >
         <a href="#">{{post.author.user.username}}</a><h6>{{post.created| date:"F d Y"}}</h6>
         <button type="submit" class="open-delete" onclick="deleteModal({value1:'{{post.id}}',value2:'{{post.post_title}}',value3:'{{ csrf_token }}'})">Delete</button>
     </div>

@@ -1,3 +1,10 @@
+/* @font-face {
+    font-family:"Macondo";
+    src: url("static\fonts\Macondo\Macondo-Regular.ttf");
+    font-weight: 500;
+    font-style: normal;
+} */
+
 .brand-name-div{
     width:fit-content;
     height:fit-content;
@@ -35,6 +42,7 @@
 }
 
 .navigation-div ul li a{
+    font-family: Macondo;
     display: flex;
     align-content: center;
     height: auto;
@@ -74,12 +82,15 @@
     padding: 10px;
     row-gap: 10px;
 }
+
 .profile-div img{
-    object-position: center;
-    width:60px;
+    width: 70px;;
+    height: 70px;
     border-radius: 50%;
+    object-fit: cover; /* to fit img in center*/
     margin-left: auto;
     margin-right: auto;
+
 }
 .profile-div h3{
     justify-content: center;
