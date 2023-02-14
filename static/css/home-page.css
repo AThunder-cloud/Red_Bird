@@ -39,7 +39,7 @@ html{
 
 .feed-container{
   display:grid;
-  grid-template-rows:max-content auto;
+  grid-template-rows:max-content max-content;
   width: 100vw;
   height: max-content;
   row-gap: 5px;

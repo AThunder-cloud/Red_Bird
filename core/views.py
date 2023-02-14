@@ -7,6 +7,7 @@ from .models import Profile,Post
 from django.contrib.auth import authenticate, login, logout
 from .forms import PostForm , GenreForm
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 
@@ -102,6 +103,7 @@ def create_post(request):
 		else:
 			form = PostForm()
 	return render(request, 'create-post.html', {'form':form})
+
 
 def delete(request):
 	print('deleting......')

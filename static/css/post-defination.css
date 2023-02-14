@@ -6,6 +6,7 @@
     background-color:rgb(255, 255, 255);
     color:black;
     width:100%;
+    max-width: 800px;
     height:370px;
     border-radius:7px;
     /* padding:5px; */
@@ -66,8 +67,6 @@
 }
 
 .post-div-content-area div textarea{
-    font-family: 'Ubuntu Mono', monospace;
-
     background-color: transparent;
     width:100%;
     min-width:250px;
@@ -88,17 +87,16 @@
 textarea::-webkit-scrollbar{display: none;}
 
 .post-element-img{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: auto;
+    display:grid;
+    width:100%;
     height: 250px;
     border-radius: 5px;
+    overflow: hidden;
 }
 .post-element-img img{
     border-radius:5px;
-    width:fit-content;
-    max-height: 230px;
+    width:100%;
+    margin:auto;
 }
 .post-fotter{
     display: flex;
