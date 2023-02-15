@@ -112,3 +112,6 @@ def delete(request, item_id):
 		post.delete()
 		return JsonResponse({'success':True}) 
 	return JsonResponse({"success":False})
+
+def profile(request):
+	return render(request, 'profile.html')

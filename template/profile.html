@@ -1,36 +1,71 @@
 {% load static %}
+{% load profile_img_tag %}
 <style>
-    .profile-container{
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        background-image:linear-gradient(-30deg, rgb(239, 240, 124),#ff2c55, #183a67);
+
+    }
+    .container{
         display: grid;
-        gap: 10px;
-        padding: 5px;
+        grid-template-columns: 1fr 3fr;
+        width: calc(100vw - 100px);
+        height: calc(100vh - 100px);
+        margin:50px;
+        background-color: transparent;
+        box-shadow:30px 40px 40px 10px rgba(100, 100, 100, 0.804); 
+        /*the first value :vertical horisontal blur spred */
+        /*inset change the position of shadow from out side to inside   */
     }
-    .profile-tab{
-        width: auto;
-        background:#48ff3a;
-        color: white;
-        border-radius: 9px;
-        border: 1px solid #48ff3a;
-        padding: 2px;
+
+    .profile-panel{
+        display: flex;
+        flex-direction: column;
+        border: 1px solid black;
+        width: 100%;
+        height: 100%;   
     }
-    .profile-tab a{
-        text-decoration: none;
-        text-align: center;
-        color:rgb(0, 0, 0);
+    .profile-panel img{
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        object-fit: cover; 
+        margin-left: auto;
+        margin-right: auto;
+        transition: transform 0.3s ease;
     }
+    .profile-panel img:hover{
+        transform: scale(1.2);
+        border-radius: 0;
+        object-fit: contain;
+    }
+    .profile-panel h2{
+        margin-left: auto;
+        margin-right: auto;
+        cursor: pointer;
+    }
+
+    .profile-post{
+        border: 1px solid black;
+        width: 100%;
+        height: 100%;
+    }
+
 </style>
 
-<div class="profile-container">
-    <div>
-
+<body>
+    <div class="container">
+        <div class="profile-panel">
+            <img src="{% profile_img user.id %}" alt="No Profile">
+            <h2>{{user.first_name}} {{user.last_name}} |<small> @{{user.username}}</small></h2>
+        </div>
+        <div class="profile-post">
+    
+        </div>
     </div>
-</div>
-
-<div class="profile-container">
-    <div  class="profile-tab">
-        <a href="#"><img class="nav-profile-img" src="{% static 'images/Chopper.jpeg' %}" alt="">Chopper</a>
-    </div>
-    <div  class="profile-tab">
-        <a href="#"><img class="nav-profile-img" src="{% static 'images/Chopper.jpeg' %}" alt="">Chopper</a>
-    </div>
-</div>
+</body>
