@@ -25,6 +25,7 @@ function deleteModal(postId){
     popup.style.transform="translate(-50%,-50%) scale(1)";
     post_id = postId.value1;
     post_title = postId.value2;
+    csrf_token = postId.value3;
     document.getElementById("mytext").innerHTML = post_id;
     document.getElementById("mytext2").innerHTML = post_title;
 }
@@ -32,27 +33,29 @@ function deleteModal(postId){
 
 
 function passValues(token){
-    // var data ={'post_id':post_id,'post_title':post_title};
-    csrf_token = token.value1;
-    alert(csrf_token)
     $.ajax({
         type:'POST',
-        url:delBtn.dataset.url,
-        headers:{
-            "X_CSRFToken":csrf_token,
-        },
+        url:"/delete/" + post_id + '/',
         data: {
-            'post_id':post_id,        
+            csrfmiddlewaretoken:csrf_token,   
         },
         contentType:"application/json; charset=utf-8",
         dataType:"json",
         success :function(response){
-            alert(response);
+            if(response.success){
+                alert("Successfull.....!!")
+                location.reload()
+            }else{
+                alert("Unsuccessfull....!!")
+            }
         },
         error: function(xhr,status,error){
-            alert("unsuccessfull...!!!")
+            alert("There is an error in deleteing the post...!!!")
         }
     });
+    popup.style.top= "0";
+    popup.style.transform="translate(-50%,-50%) scale(.1)";
+    popup.style.visibility="hidden"; 
 }
 
 function closeModal(){

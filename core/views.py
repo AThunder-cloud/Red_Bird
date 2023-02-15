@@ -104,13 +104,11 @@ def create_post(request):
 			form = PostForm()
 	return render(request, 'create-post.html', {'form':form})
 
-
-def delete(request):
+@csrf_exempt
+def delete(request, item_id):
 	print('deleting......')
+	post = get_object_or_404(Post, id=item_id)
 	if request.method == 'POST':
-		post_id = request.POST.get('post_id')
-		print(f"post={post_id}")
-		post = get_object_or_404(Post, id=post_id)
 		post.delete()
-		return JsonResponse({'success':True}) and render(request,'index')
+		return JsonResponse({'success':True}) 
 	return JsonResponse({"success":False})
