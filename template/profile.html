@@ -1,6 +1,12 @@
 {% load static %}
 {% load profile_img_tag %}
 <style>
+    @font-face {
+        font-family:"UbuntuMono" ;
+        src: url("/static/fonts/Ubuntu_Mono/UbuntuMono-Bold.ttf") format("truetype");
+        font-weight: 1000;
+        font-style: bold;
+    }
     body{
         display: flex;
         justify-content: center;
@@ -9,6 +15,8 @@
         margin: 0;
         padding: 0;
         background-image:linear-gradient(-30deg, rgb(239, 240, 124),#ff2c55, #183a67);
+        backdrop-filter: blur(5px);
+        font-family:"UbuntuMono",sans-serif;
 
     }
     .container{
@@ -26,34 +34,72 @@
     .profile-panel{
         display: flex;
         flex-direction: column;
+        row-gap: 10px;
         border: 1px solid black;
         width: 100%;
         height: 100%;   
     }
+    .profile-img{
+        height: 220px;
+    }
     .profile-panel img{
+        display: block;
         width: 200px;
         height: 200px;
         border-radius: 50%;
+        border:4px solid #e8e8e8;
         object-fit: cover; 
         margin-left: auto;
         margin-right: auto;
-        transition: transform 0.3s ease;
+        transform-origin: center;
+        transition: transform 0.3s ease-out;
     }
     .profile-panel img:hover{
         transform: scale(1.2);
         border-radius: 0;
         object-fit: contain;
+        border: none;
     }
     .profile-panel h2{
         margin-left: auto;
         margin-right: auto;
         cursor: pointer;
     }
+    .profile-panel hr{
+        width: 80%;
+        border-color: black;
+    }
+
+    .profile-panel textarea{
+        font-family: inherit;
+        font-size:medium;
+        margin:5px 5px;
+        resize: none;
+        line-height:1;
+        padding:0;
+        background-color: transparent;
+        border: 0;
+
+
+    }
 
     .profile-post{
+        display: grid;
+        grid-template-columns: repeat(auto-fill,minmax(400px, 1fr));
+        grid-auto-rows: 300px;
+        gap: 10px;
         border: 1px solid black;
         width: 100%;
         height: 100%;
+        overflow-y: scroll;
+        overflow-x: none;
+    }
+    .profile-post::-webkit-scrollbar{
+        display: none;
+    }
+    .item{
+        background-color: rgb(72, 72, 72);
+        border: 1px solid black;
     }
 
 </style>
@@ -61,11 +107,21 @@
 <body>
     <div class="container">
         <div class="profile-panel">
-            <img src="{% profile_img user.id %}" alt="No Profile">
-            <h2>{{user.first_name}} {{user.last_name}} |<small> @{{user.username}}</small></h2>
+            <div class="profile-img">
+                <img src="{% profile_img user.id %}" alt="No Profile">
+            </div>
+            <h2>{{user.first_name}} {{user.last_name}} <i>/</i><small> @{{user.username}}</small></h2>
+            <hr>
+            <textarea rows="4">{{user.profile.bio}}</textarea>
         </div>
         <div class="profile-post">
-    
+            <div class="item">hi</div>
+            <div class="item">hi</div>
+            <div class="item">hi</div>
+            <div class="item">hi</div>
+            <div class="item">hi</div>
+            <div class="item">hi</div>
+
         </div>
     </div>
 </body>
