@@ -3,9 +3,8 @@ from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-from .models import Profile,Post
+from .models import Profile,Post, Genre
 from django.contrib.auth import authenticate, login, logout
-from .forms import PostForm , GenreForm
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
@@ -68,7 +67,7 @@ def signout(request):
 
 
 def index(request):
-	posts = Post.objects.all()
+	posts = Post.objects.filter()
 	images = Post.objects.only('image')
 	context = {
 	'posts' : posts,
@@ -76,10 +75,14 @@ def index(request):
 	}
 	return render(request,'index.html',context)
 
-def profile(request,pk):
-    uprofile = Profile.object.get(id=pk)
-    if request.method == 'POST':
-        None
+def user_profile(request, pk):
+	user = User.objects.get(id=pk)
+	posts = Post.objects.filter(author= user.profile)
+	context={
+		'user':user,
+		'posts':posts,
+	}
+	return render(request, 'profile.html',context)
 
 def post(request):
 	posts = Post.objects.all()
@@ -91,18 +94,27 @@ def post(request):
 	return render(request, 'post-body.html',context)
 
 def create_post(request):
-	form = PostForm()
-	genre = GenreForm()
 	if request.method  == "POST":
-		form = PostForm(request.POST,request.FILES)
-		if form.is_valid():
-			post = form.save(commit=False)
-			post.author = request.user.profile
-			post.save()
-			return redirect('index')
-		else:
-			form = PostForm()
-	return render(request, 'create-post.html', {'form':form})
+		title = request.POST.get('title')
+		post_body = request.POST.get('post-body')
+		image = request.FILES.get('image')
+		genre_ids = request.POST.getlist('genres')
+
+		#Creating a post instance 
+		post = Post.objects.create(
+			author = request.user.profile,
+			post_title = title,
+			text_body = post_body,
+			image = image
+		)
+		# Adding genre to the post instance
+		genres = Genre.objects.filter(id__in=genre_ids)
+		post.genres.set(genres)
+
+		return redirect('index')
+	# Rendering template for GET requests
+	genres = Genre.objects.all()
+	return render(request, 'create-post.html',{'genres':genres})
 
 @csrf_exempt
 def delete(request, item_id):

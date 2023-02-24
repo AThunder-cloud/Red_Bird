@@ -1,13 +1,11 @@
 .post-div-container{
     display: flex;
     flex-direction: column;
-    margin-left: auto;
-    margin-right: auto;
     background-color:rgb(255, 255, 255);
     color:black;
     width:100%;
     max-width: 800px;
-    height:370px;
+    height:fit-content;
     border-radius:7px;
     /* padding:5px; */
 }
@@ -34,34 +32,28 @@
 }
 .post-element-user a{text-decoration: none; color: black; margin: 3px;}
 .post-element-user h6{ color:black;margin: 7px;}
-.post-element-user button{
-    width:50px;
-    height:1.5em;
-    margin: 5px;
-    background: rgb(255, 69, 69);
-    border: 0;
-    outline: none;
-    cursor: pointer;
-    border-radius:5px;
+.post-element-user span img{
+    background-color:transparent;
+    object-position: center;
+    width:20px ;
+    height:20px;
 }
 #post-element-title{
     background-color:transparent;
     width:100%;
     height:32px;
     outline: none;
-    border-radius: 5px;
     box-sizing: border-box;
     padding:2px 10px 0px 10px;
-    align-items: center;
     border: none;
-    font-size:20px;
-    font:bolder ;
+    font-size:16px;
     resize: none;
+    margin-left: auto;
+    margin-right: auto;
 }
 .post-div-content-area{
     display: grid;
-    grid-template-columns:1fr 1fr;
-    column-gap:4px ;
+    grid-template-columns:1fr;
     margin: 2px;
     
 }
@@ -69,8 +61,7 @@
 .post-div-content-area div textarea{
     background-color: transparent;
     width:100%;
-    min-width:250px;
-    height: 250px;
+    height:150px;
     outline: none;
     overflow-y: scroll;
     border-radius: 5px;
@@ -89,11 +80,13 @@ textarea::-webkit-scrollbar{display: none;}
 .post-element-img{
     display:grid;
     width:100%;
-    height: 250px;
+    height: fit-content;
     border-radius: 5px;
     overflow: hidden;
+    border-radius: 10px;
 }
 .post-element-img img{
+    object-fit: cover;
     border-radius:5px;
     width:100%;
     margin:auto;

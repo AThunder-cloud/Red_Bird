@@ -11,28 +11,19 @@
     {% block content %}
     <!-- Delete Modal -->
     {% include 'delete.html' %}
-    
     <!-- main page start -->
-    <div class="main-section">
-      <div class="navigation-tab">{% include 'navigation.html' %}</div>
-    <!-- main page end -->
-    <!-- feed container start -->
-      <div class="feed-container">
-        <!-- search section start -->
-        <div class="search-tab">{% include 'search.html' %} </div>
-        <!-- search section end -->
+    <div class="head-section">
+      <div class="search-tab">{% include 'search.html' %}</div>
 
-        <!-- feed section start -->
-        <div class="feed-section">
+      <div class="body-section">
 
-          <!-- post section  -->
-          <div class="post-tab">{% include 'post-body.html' %} </div>
-          <!-- activity section -->
-          <div class="activity-tab">{% include 'test.html' %} </div>
-        <!-- feed section end -->
-        </div>
-       </div>
-      <!-- feed container end -->
+        <div class="navigation-panel">{% include 'navigation.html' %}</div>
+
+        <div class="post-container">{% include 'post-body.html' %}</div>
+
+        <div class="active panel">{% include 'test.html' %}</div>
+      </div>
+      
     </div>
     {% endblock content %}
 </body>

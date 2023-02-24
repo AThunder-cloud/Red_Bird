@@ -2,10 +2,6 @@
 {% load profile_img_tag %}
 <link rel="stylesheet" href="{% static 'css/navigation.css' %}">
 
-
-<div class="brand-name-div">
-    <img src="{% static 'default-img/Name1.png' %}" alt="No Image Found">
-</div>
 <div class="navigation-div">
     <ul>
         <li>
@@ -14,16 +10,16 @@
             <span>Home</span></a>
         </li>
         <li>
-            <a href="{% url 'profile' %}">
-            <img src="{% static 'default-img/icons/Search-icon.svg' %}">
-            <span>Profile</span></a>
-        </li>
-        <li>
             <a href="{% url 'create-post' %}">
             <img src="{% static 'default-img/icons/Edit-icon.svg' %}">
             <span>Create</span></a>
         </li>
-        {%if user.is_authenticated %}
+        {% if user.is_authenticated %}
+        <li>
+            <a href="{% url 'profile' user.id %}">
+            <img src="{% static 'default-img/icons/Search-icon.svg' %}">
+            <span>Profile</span></a>
+        </li>
         <li>
             <a href="{% url 'signin' %}">
             <img src="{% static 'default-img/icons/Login-icon.svg' %}">
@@ -44,8 +40,7 @@
             <a href="{% url 'signin' %}">
             <img src="{% static 'default-img/icons/Login-icon.svg' %}">
             <span>Login</span></a>
-        </li>
-       
+        </li>       
         {% endif %}
        
     </ul>

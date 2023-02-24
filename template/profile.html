@@ -54,12 +54,12 @@
         transform-origin: center;
         transition: transform 0.3s ease-out;
     }
-    .profile-panel img:hover{
+    /* .profile-panel img:hover{
         transform: scale(1.2);
         border-radius: 0;
         object-fit: contain;
         border: none;
-    }
+    } */
     .profile-panel h2{
         margin-left: auto;
         margin-right: auto;
@@ -85,8 +85,8 @@
 
     .profile-post{
         display: grid;
-        grid-template-columns: repeat(auto-fill,minmax(400px, 1fr));
-        grid-auto-rows: 300px;
+        grid-template-columns: repeat(auto-fill,minmax(300px, 1fr));
+        grid-auto-rows: max-content;
         gap: 10px;
         border: 1px solid black;
         width: 100%;
@@ -115,13 +115,7 @@
             <textarea rows="4">{{user.profile.bio}}</textarea>
         </div>
         <div class="profile-post">
-            <div class="item">hi</div>
-            <div class="item">hi</div>
-            <div class="item">hi</div>
-            <div class="item">hi</div>
-            <div class="item">hi</div>
-            <div class="item">hi</div>
-
+           {% include 'post-body.html' %}
         </div>
     </div>
 </body>

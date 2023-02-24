@@ -9,8 +9,9 @@
     <!-- Post Head Section -->
     <div  class="post-element-user">
         <img src="{{post.author.profile_img.url}}" alt="" >
-        <a href="#">{{post.author.user.username}}</a><h6>{{post.created| date:"F d Y"}}</h6>
-        <button type="submit" class="open-delete" onclick="deleteModal({value1:'{{post.id}}', value2:'{{post.post_title}}', value3:'{{csrf_token}}'})">Delete</button>
+        <a href="{% url 'profile' post.author.user.id %}">{{post.author.user.username}}</a><h6>{{post.created| date:"F d Y"}}</h6>
+        <span type="submit" class="open-delete" onclick="deleteModal({value1:'{{post.id}}', value2:'{{post.post_title}}', value3:'{{csrf_token}}'})">
+            <img src="{% static 'default-img/icons/delete-icon2.svg' %}"></span>
     </div>
     <div>
         {% if post.post_title != 'No title'  %}
@@ -21,16 +22,15 @@
 
     <!-- Post Body Section -->
     <div class="post-div-content-area">
-            <!-- written content section -->
+        {% if post.image.url is null %}
         <div>
             <textarea readonly spellcheck="disable" name="post-element-text" >{{post.text_body}}</textarea>
         </div>
-        <!-- wrriten content section ends -->
-        <!-- img section start  -->
+        {% else %}
         <div class="post-element-img">
             <img onerror="this.style.display = 'none';" width="100px" src="{{post.image.url}}">
-        </div>
-        <!-- img section ends -->
+        </div> 
+        {% endif %}
     </div>
     <!-- Post  Body Section Ends -->
 
@@ -46,8 +46,6 @@
     </div>
     <!-- Post foot section ends  -->
 </div>
-<br>
-
 {% endfor %}
 
 <script src="{% static 'js/delete.js' %}"></script>
