@@ -3,7 +3,7 @@ from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-from .models import Profile,Post, Genre
+from .models import Profile,Post, Genre, Like, Followers, Comment
 from django.contrib.auth import authenticate, login, logout
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -91,7 +91,7 @@ def post(request):
 	'posts' : posts,
 	'images': images
 	}
-	return render(request, 'post-body.html',context)
+	return render(request, 'feed.html',context)
 
 def create_post(request):
 	if request.method  == "POST":
@@ -114,7 +114,7 @@ def create_post(request):
 		return redirect('index')
 	# Rendering template for GET requests
 	genres = Genre.objects.all()
-	return render(request, 'create-post.html',{'genres':genres})
+	return render(request, 'create-post.html',{'genres':genres})      
 
 @csrf_exempt
 def delete(request, item_id):
@@ -127,3 +127,22 @@ def delete(request, item_id):
 
 def profile(request):
 	return render(request, 'profile.html')
+
+
+def like_post(request):
+	username = request.user.username
+	post_id = request.GET.get("post_id")
+	post = get_object_or_404(Post, id=post_id)
+	like = Like.objects.filter(post_id=post_id, username=username).first()
+
+	if like == None:
+		new_like = Like.objects.create(post_id=post_id, username=username)
+		new_like.save()
+		post.no_likes += 1
+		post.save()
+		return redirect('/')
+	else:
+		like.delete()
+		post.no_likes -= 1
+		post.save()
+		return redirect('/')

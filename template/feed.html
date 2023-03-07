@@ -1,0 +1,62 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/feed.css' %}">
+<link rel="stylesheet" href="{% static 'css/delete-modal.css' %}">
+
+
+<!-- post fetching block start -->
+{% for post in posts %}
+<div class="post-defination">
+
+    <!-- user name section -->
+    <div  class="post-head-section">
+      <div>
+         <a href="{% url 'profile' post.author.user.id %}"><img loading="lazy" src="{{post.author.profile_img.url}}"></a>
+      </div> 
+      <a href="{% url 'profile' post.author.user.id %}">
+      <div class="user-name">
+          <span>Monkey D Luffy</span>
+          <span>@{{post.author.user.username}}</span>
+      </div>
+      </a>
+      <div>
+          <h6>{{post.created | date:"F d Y"}}</h6>
+      </div>  
+      <div>
+        {% for genre in post.genres.all %}
+          <img loading="lazy" id="genre-icon" src="{{genre.genre_img.url}}" alt="{{genre.name}}"> 
+        {% endfor %}
+      </div>
+    </div>
+    <!-- user name section ends -->
+
+    <div class="post-title">
+      {% if post.post_title %}
+        <textarea readonly >{{post.post_title}}</textarea>
+      {% endif %}
+    </div>
+    <a href="#">
+    <div class="post-body-section">
+            <!-- written content section -->
+        <div>
+            <textarea readonly spellcheck="disable">{{post.text_body}}</textarea>
+        </div>
+        <!-- wrriten content section ends -->
+        <!-- img section start  -->
+        <div class="post-image">
+          {% if post.image %}
+            <img loading="lazy" src="{{post.image.url}}" alt="">
+          {% endif %}
+        </div>
+        <!-- img section ends -->
+
+    </div>
+  </a>
+    <div class="post-foot-section">
+      <a href="/like-post?post_id={{post.id}}"><span class="foot-info">❤️{{post.no_likes}}</span></a>
+      <span class="foot-info">💬Comment</span>
+      <span class="foot-info">😒Dislike</span>
+    </div>
+</div>
+{% endfor %}
+
+<script src="{% static 'js/delete.js' %}"></script>

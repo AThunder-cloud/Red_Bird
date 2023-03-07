@@ -85,7 +85,7 @@
 
     .profile-post{
         display: grid;
-        grid-template-columns: repeat(auto-fill,minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fill,minmax(540px, 1fr));
         grid-auto-rows: max-content;
         gap: 10px;
         border: 1px solid black;
@@ -115,7 +115,7 @@
             <textarea rows="4">{{user.profile.bio}}</textarea>
         </div>
         <div class="profile-post">
-           {% include 'post-body.html' %}
+           {% include 'feed.html' %}
         </div>
     </div>
 </body>

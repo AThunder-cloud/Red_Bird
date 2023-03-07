@@ -23,23 +23,23 @@
         <li>
             <a href="{% url 'signin' %}">
             <img src="{% static 'default-img/icons/Login-icon.svg' %}">
-            <span>Login</span></a>
+            <span>LogIn</span></a>
         </li>
         <li>
             <a href="{% url 'signout' %}">
             <img src="{% static 'default-img/icons/Logout-icon.svg' %}">
-            <span>Logout</span></a>
+            <span>LogOut</span></a>
         </li>
         {% else %}
         <li>
             <a href="{% url 'signup' %}">
             <img src="{% static 'default-img/icons/Login-icon.svg' %}">
-            <span>Signin</span></a>
+            <span>SignUp</span></a>
         </li>
         <li>
             <a href="{% url 'signin' %}">
             <img src="{% static 'default-img/icons/Login-icon.svg' %}">
-            <span>Login</span></a>
+            <span>LogIn</span></a>
         </li>       
         {% endif %}
        
