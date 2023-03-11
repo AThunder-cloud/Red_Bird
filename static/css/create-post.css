@@ -1,14 +1,32 @@
-body{
-    background-image:url(/static/images/assets/blue-wave.svg);
-    background-position: center;
-    background-repeat:no-repeat;
-    background-size: cover;
+
+
+@font-face {
+    font-family:"Concert" ;
+    src: url("/static/fonts/Concert_One/ConcertOne-Regular.ttf") format("truetype");
+  }
+  @font-face {
+    font-family:"Comic" ;
+    src: url("/static/fonts/Comic_Neue/ComicNeue-Bold.ttf") format("truetype");
+  }
+  html{
+    font-family:"Concert";
+    background-color: rgb(41, 41, 41);
 }
 .container{
+    /* background-image:url(/static/images/assets/red-blob.svg); */
+    /* background-position:center;
+    background-repeat:no-repeat;
+    background-size:cover; */
+    width: fit-content;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right:auto ;
+}
+form{
     display: flex;
     flex-direction:column ;
-    background-color:transparent;
-    border: 1px solid rgb(255, 255, 255);
+    gap: 5px;
+    border:1px solid rgb(255, 255, 255);
     color: rgb(255, 255, 255);
     width: 700px;
     height: fit-content;
@@ -17,5 +35,82 @@ body{
     margin-right: auto;
     padding:10px ;
     border-radius: 10px;
-    z-index: -1;
+}
+.form-title{
+    margin-left:auto;
+    margin-right: auto;
+    font-size:24px;
+}
+
+.container label{
+    font-size: 14px;
+}
+
+input[type=text]{
+    font-family:"Comic";
+    background-color: rgba(73, 73, 73, 0.555);
+    backdrop-filter: blur(5px);
+    padding: 8px 20px;
+    font-size: 18px;
+    color: white;
+    border:1px solid #ffffff;
+    border-radius: 10px;
+}
+
+textarea{
+    font-family:"Comic";
+    font-weight: 300;
+    background-color: rgba(73, 73, 73, 0.555);
+    backdrop-filter: blur(5px);
+    font-size: 16px;
+    font-weight: 500px;
+    color:rgb(255, 255, 255);
+    border:1px solid #ffffff ;
+    padding:8px 20px;
+    border-radius:10px ;
+    resize: none;
+    outline: none;
+}
+
+input[type=file]::file-selector-button{
+    background-color: rgb(255, 100, 100);
+    border-radius: 4px;
+    color: #ffffff;
+    width: fit-content;
+    cursor: pointer;
+    padding: 3px;
+}
+input[type=file]{
+    border: 1px solid white;
+    width: fit-content;
+    padding: 2px;
+    border-radius: 4px;
+}
+select{
+    font-family:"Comic";
+    width: 100%;
+    padding: 12px 12px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid #ffffff;
+    border-radius: 5px;
+    background-color: rgba(73, 73, 73, 0.555);
+    color: #ffffff;
+    font-size:16px;
+    font-weight: bold;
+}
+select::-webkit-scrollbar{
+    display: none;
+  }
+
+button[type=submit]{
+    width: 100px;
+    height:fit-content;
+    font-family: inherit;
+    font-size:20px;
+    background-color: rgb(255, 100, 100);
+    border-radius: 4px;
+    margin-left: auto;
+    margin-right: 5px;
+    padding:2px 0 2px 0;
 }

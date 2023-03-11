@@ -1,73 +1,107 @@
 <style>
-   form {
-          width: 359px;
-          margin: 0 auto;
-          margin-top:100px;
-          padding: 20px;
-          border: 3px solid rgb(92, 255, 114);
-          border-radius: 10px;
-        }
-  
-        input[type="text"], input[type="password"], input[type="email"], input[type="cpassword"] {
-          width: 100%;
-          padding: 12px 20px;
-          margin: 8px 0;
-          box-sizing: border-box;
-          border: 1px solid rgb(0, 236, 12);
-          border-radius: 10px;
-        }
-  
-        input[type="text"]:hover{
-          background-color: #8eff80;
-        }
-  
-        input[type="password"]:hover{
-          background-color: #8eff80;
-        }
+  @font-face {
+    font-family:"Concert" ;
+    src: url("/static/fonts/Concert_One/ConcertOne-Regular.ttf") format("truetype");
+  }
+  @font-face {
+    font-family:"Comic" ;
+    src: url("/static/fonts/Comic_Neue/ComicNeue-Bold.ttf") format("truetype");
+  }
+  *{
+    font-family:"Concert";
+    font-weight: 500;
+    background-color: rgb(41, 41, 41);
+  }
+  .container{
+    width: fit-content;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right:auto ;
+}
+form{
+    display: flex;
+    flex-direction:column ;
+    gap:10px;
+    border:1px solid rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    width: 700px;
+    height: fit-content;
+    margin-top:15%;
+    margin-left: auto;
+    margin-right: auto;
+    padding:10px ;
+    border-radius: 10px;
+}
+.form-title{
+    margin-left:auto;
+    margin-right: auto;
+    font-size:26px;
+}
+.container label{
+    font-size: 16px;
+}
 
-        input[type="email"]:hover{
-          background-color: #8eff80;
-        }
+input[type=text], input[type=password], input[type=cpassword], input[type=email]{
+    font-family:inherit;
+    background-color: rgba(73, 73, 73, 0.555);
+    backdrop-filter: blur(5px);
+    padding: 8px 20px;
+    font-size: 18px;
+    color: white;
+    border:1px solid #ffffff;
+    border-radius: 10px;
+}
 
-        input[type="cpassword"]:hover{
-          background-color: #8eff80;
-        }
+input[type=submit]{
+    width: 100px;
+    height:fit-content;
+    font-family: inherit;
+    font-size:20px;
+    background-color: rgb(255, 100, 100);
+    border-radius: 4px;
+    margin-left: auto;
+    margin-right: auto;
+    padding:2px 0 2px 0;
+}
+span{
+  margin-left: auto;
+  margin-right: auto;
+}
+a,b{
+  color: yellow;
+}
 
-        input[type="submit"] {
-          width: 100%;
-          background-color: #ffffff;
-          color: rgb(0, 0, 0);
-          padding: 18px 20px;
-          margin: 8px 0;
-          border: none;
-          border-radius: 10px;
-          cursor: pointer;
-  
-        }
-  
-        input[type="submit"]:hover {
-          background-color: #8eff80;
-        }
 </style>
 
+<div class="container">
 <form autocomplete="off" method="POST">
     {% csrf_token %}
-      <h1><center>Sign Up</center></h1>
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username" autocomplete="off">
+      <span class="form-title">SIGN UP</span>
 
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email">
+      <div>
+        <label for="firstname">First Name</label>
+        <input type="text" name="fname" autocomplete="off">
 
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password">
+        <label for="lastname">Last Name</label>
+        <input type="text" name="lname" autocomplete="off">
+      </div>
 
-      <label for="cpassword">Confirm Password:</label>
-      <input type="cpassword" id="cpassword" name="cpassword">
+      <label for="username">Username</label>
+      <input type="text" name="username" autocomplete="off">
 
-      <p><center>Already Have an account? <a href="{% url 'signin' %}">Sign In</a></center></p>
-      
+      <label for="email">Email</label>
+      <input type="email" name="email">
+
+      <label for="password">Password</label>
+      <input type="password"  name="password">
+
+      <label for="cpassword">Confirm Password</label>
+      <input type="cpassword" name="cpassword">
+
       <input type="submit" value="Sign Up">
-      By clicking the <b>Sign up button</b>,you are creating an account,
-      and agree to <b>Red Bird's</b> Terms of Service and Privacy Policy
+      <span>Already Have an account?<a href="{% url 'signin' %}">Log In</a></span>
+      
+      <span>By clicking the <b>Sign up button</b>,you are creating an account,
+      and agree to <b>Red Bird's</b> Terms of Service and Privacy Policy</span>
 </form>
+</div>

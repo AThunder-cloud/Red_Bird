@@ -1,74 +1,97 @@
 <style>
+	@font-face {
+		font-family:"Concert" ;
+		src: url("/static/fonts/Concert_One/ConcertOne-Regular.ttf") format("truetype");
+    }
+    @font-face {
+		font-family:"Comic" ;
+		src: url("/static/fonts/Comic_Neue/ComicNeue-Bold.ttf") format("truetype");
+    }
+
+	*{
+		font-family:"Concert";
+		background-color: rgb(41, 41, 41);
+	}
 	.container{
+		width: fit-content;
+		border-radius: 10px;
+		margin-left: auto;
+		margin-right:auto ;
+	}
+	form{
 		display: flex;
 		flex-direction:column ;
-		background-color: rgb(152, 155, 255);
-		border: 1px solid black;
-		color: aliceblue;
+		gap: 10px;
+		border:1px solid rgb(255, 255, 255);
+		color: rgb(255, 255, 255);
 		width: 700px;
 		height: fit-content;
-		margin-top:10%;
+		margin-top:25%;
 		margin-left: auto;
 		margin-right: auto;
 		padding:10px ;
 		border-radius: 10px;
 	}
-	.signin-form {
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-		padding:40px;
-		margin-block-end: 0;
-	}
 	.form-title {
-		font-family:"UbuntuMono";
-		margin-bottom: 20px;
-		margin-left: auto;
+		font-family: inherit;
+		margin-left:auto;
 		margin-right: auto;
-		font-weight: 500;
-		font-size: 36px;
-	}
-	.form-input{
-		width:100%;
-		padding: 10px;
-		font-size:18px;
-		border-radius: 10px;
-	}
-	.form-label{ 
-		font-weight:300px;
- 	 	font-size: 20px;
-	}
-	.form-btn{
-		width: 100px;
-		height: fit-content;
-		margin:30px auto 10px auto;
-		padding:5px;
-		border-radius: 5px;
-		background-color: crimson;
-		color: black;
-		font-size: 20px;
-		font-weight: 500;
+		font-size:24px;
 	}
 
-	.form-btn:hover{
-		background-color: greenyellow;
+	.container label{
+		font-family: inherit;
+   		font-size: 16px;
+	}
+
+	input[type=text], input[type=password] {
+		font-family: inherit;
+		background-color: rgba(73, 73, 73, 0.555);
+		backdrop-filter: blur(5px);
+		padding: 8px 20px;
+		font-size: 18px;
+		color: white;
+		border:1px solid #ffffff;
+		border-radius: 10px;
+	}
+
+	input[type=submit]{
+		width: 100px;
+		height:fit-content;
+		font-family: inherit;
+		font-size:20px;
+		background-color: rgb(255, 100, 100);
+		border-radius: 4px;
+		margin-left: auto;
+		margin-right: 5px;
+		padding:2px 0 2px 0;
+	}
+	a{
+		margin-left: auto;
+		margin-right: auto;
+		color: yellow;
+	}
+	span{
+		margin-left: auto;
+		margin-right: auto;
+		font-size:18px;
 	}
 
 </style>
 
 <div class="container">
-	<form method="POST" class="signin-form">
+	<form method="POST">
 		{% csrf_token %}
 		<span class="form-title">LOGIN</span>
-		<label class="form-label">Username:</label>
+		<label for="username">Username</label>
 		<input class="form-input" type="text" placeholder="Enter Username" autocomplete="off" name="username">
 		
-		<label class="form-label">Password:</label>
+		<label for="password">Password</label>
 		<input class="form-input" type="password" placeholder="Enter Password" name="password">
 
 		<input class="form-btn" type="submit" vlue="Login">
 		
-		<p>haven`t signed up yet ?</p>
+		<span>haven`t signed up yet ?</span>
 		<a href="{% url 'signup' %}">Sign up</a>
 	</form>
 	

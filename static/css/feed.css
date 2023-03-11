@@ -3,7 +3,6 @@
     flex-direction: column;
     background-color:white;
     color:black;
-    border:2px solid rgb(230,80,80);
     width:540px;
     min-width:300px;
     height:fit-content;
@@ -39,12 +38,12 @@
 }
 
 #genre-icon{
-    background-color: rgb(255, 255, 255);
-    object-fit: cover;
+    /* background-color: rgb(255, 255, 255); */
+    object-fit:contain;
     width:30px;
+    border-radius: 0;
     height: 30px;
     margin: 0px;
-    border-radius: 50%;
     margin-left:5px ;
 }
 .post-head-section a{text-decoration: none; color: rgb(255, 255, 255); margin: 3px;}
