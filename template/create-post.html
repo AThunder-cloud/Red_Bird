@@ -45,8 +45,11 @@
                     }else{
                         $('select option:not(:selected)').prop('disable',false);
                     }
-                    var selectedOptions = $('select').val();
-                    $('#selected-options').text('Selected options:' + selectedOptions.join(', '));
+                    var selectedOptions = [];
+                    $('select option:selected').each(function(){
+                        selectedOptions.push($(this).text());
+                    });
+                    $('#selected-options').text('Selected Genres: ' + selectedOptions.join(', '));
                 });
 
                 $('select').on('mousedown', function(e){
