@@ -1,0 +1,79 @@
+body{
+    background-color: aqua;
+    display: grid;
+    width: 300px;
+}
+.contianer{
+    display: flex;
+    flex-direction: column;
+    background-color:rgb(255, 255, 255);
+    color:black;
+    width:500px;
+    min-width:400px;
+    height:fit-content;
+
+
+}
+.content-head{
+    display: flex;
+    width:auto;
+    height:max-content; 
+    background-color:#393939;
+    cursor: pointer; 
+    padding:5px;
+}
+
+.content-head img{
+    object-fit: cover;
+    width:60px;
+    height:60px;
+    margin:0px;
+    border-radius: 50%;
+}
+
+.content-head a{text-decoration: none; color: rgb(255, 255, 255); margin: 3px;font-size: 20px;}
+.content-head h6{ color:rgb(255, 255, 255);margin: 7px;font-size: 16px;}
+.content-title{
+    background-color:transparent;
+}
+
+.content-title textarea{
+    width:100%;
+    outline: none;
+    box-sizing: border-box;
+    padding:2px;
+    border: none;
+    font-size:20px;
+    font:bolder ;
+    resize: none;
+    text-align: center;
+    cursor: pointer;
+    border-bottom:1px  solid black;
+}
+
+.content-body{
+    display: grid;
+    width: 100%;
+    grid-template-rows: auto;
+    background-color: rgb(255, 255, 255);  
+}
+
+.content-body textarea{
+    background-color: transparent;
+    width:100%;
+    outline: none;
+    overflow-y: scroll;
+    border-radius: 5px;
+    font-size: 20px;
+    border: none;
+    box-sizing: border-box;
+    padding:4px 2px;
+    cursor: pointer;
+}
+textarea::-webkit-scrollbar{display: none;}
+.content-body div img{
+    width: auto;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
