@@ -1,26 +1,29 @@
 body{
-    background-color: aqua;
-    display: grid;
-    width: 300px;
+    background-color:white;
+
 }
-.contianer{
-    display: flex;
+.content-contianer{
+    display:flex;
     flex-direction: column;
-    background-color:rgb(255, 255, 255);
+    background-color:rgb(255, 112, 112);
     color:black;
-    width:500px;
-    min-width:400px;
-    height:fit-content;
-
-
+    width:fit-content;
+    min-width: 700px;
+    height:auto;
+    border: 1px solid black;
+    margin-left: auto;
+    margin-right: auto;
 }
 .content-head{
     display: flex;
-    width:auto;
-    height:max-content; 
-    background-color:#393939;
+    width:fit-content;
+    min-width: 700px;
+    height:auto; 
+    background-color:transparent;
     cursor: pointer; 
     padding:5px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .content-head img{
@@ -29,22 +32,38 @@ body{
     height:60px;
     margin:0px;
     border-radius: 50%;
+    border: 1px double black;
 }
 
-.content-head a{text-decoration: none; color: rgb(255, 255, 255); margin: 3px;font-size: 20px;}
-.content-head h6{ color:rgb(255, 255, 255);margin: 7px;font-size: 16px;}
+.content-head a{text-decoration: none; margin: 3px;font-size: 20px;color: black;font-weight: 1000;}
+.content-head h6{margin: 7px;font-size: 16px;}
 .content-title{
     background-color:transparent;
+    width: fit-content;
+    min-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.content-genres{
+    display: flex;
+    margin-left: 10px;
+    gap:20px;
+}
+.content-genres img{
+    border: 0;
+    border-radius: 0;
 }
 
 .content-title textarea{
+    background-color: transparent;
     width:100%;
     outline: none;
     box-sizing: border-box;
     padding:2px;
     border: none;
     font-size:20px;
-    font:bolder ;
+    font-weight:1000 ;
     resize: none;
     text-align: center;
     cursor: pointer;
@@ -53,27 +72,125 @@ body{
 
 .content-body{
     display: grid;
-    width: 100%;
-    grid-template-rows: auto;
-    background-color: rgb(255, 255, 255);  
+    grid-template-rows: auto;  
+    width:fit-content;
+    min-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .content-body textarea{
     background-color: transparent;
     width:100%;
     outline: none;
-    overflow-y: scroll;
-    border-radius: 5px;
-    font-size: 20px;
-    border: none;
     box-sizing: border-box;
-    padding:4px 2px;
+    padding:2px;
+    border: none;
+    font-size:20px;
+    font-weight:550;
+    resize: none;
     cursor: pointer;
 }
 textarea::-webkit-scrollbar{display: none;}
-.content-body div img{
-    width: auto;
-    max-width: 500px;
+.postImage{
+    width:fit-content;
+    height:fit-content;
+    /* background-color: rgb(59, 59, 59); */
     margin-left: auto;
     margin-right: auto;
 }
+
+.postImage img{
+    width:400px;
+    height: auto;
+    max-width: 400px;
+}
+
+.comments-container{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    background-color:rgb(219, 255, 142);
+    width: fit-content;
+    min-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.make-comment{
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    width: fit-content;
+} 
+.make-comment button{
+    position: absolute;
+    top:0;
+    right:0;
+    width:40px;
+    height:100%;
+    background-color: rgb(255, 187, 99);
+}
+input[type=text]{
+    background-color: transparent;
+    width: 500px;
+    height: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.comment-section{
+    display: flex;
+    flex-direction:column ;
+    column-gap: 10px;
+}
+
+.comment{
+    display: flex;
+    width: 400px;
+    flex-direction:column;
+    border: 1px solid black;
+    padding: 10px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow:4px 6px 4px rgba(74, 74, 74, 0.534)  ;
+    position: relative;
+}
+.comment a{
+    text-decoration: none;
+    color: red;
+}
+
+.comment-foot{
+    display: flex;
+    background-color:transparent;
+    cursor: pointer; 
+    padding:10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.comment-foot img{
+    object-fit: cover;
+    width:50px;
+    height:50px;
+    margin:0px;
+    margin-right:20px ;
+    border-radius: 50%;
+    border:2px solid black;
+}
+
+.comment-foot span img{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top:5px;
+    right:-15px;
+}
+.comment-info{
+    display: flex;
+    flex-direction: column;}
+
+
+

@@ -9,7 +9,6 @@ fonts
 staticfiles
 
 assets
-test2.html
 
 # Backup files # 
 *.bak 
