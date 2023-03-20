@@ -86,10 +86,14 @@ html{
 }
 
 .active-panel{
-  height:100%;
+  height:925px;
   width: 100%;
-  border:1px solid black;
+  background-color: rgb(255, 221, 176);
+  overflow-y: scroll;
+  scroll-behavior:auto;
 }
 
-
+.active-panel::-webkit-scrollbar{
+  display: none;
+}
 

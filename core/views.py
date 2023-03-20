@@ -154,3 +154,11 @@ def like_post(request):
 		post.no_likes -= 1
 		post.save()
 		return redirect('/')
+
+@csrf_exempt
+def post_page(request, post_id):
+	post = get_object_or_404(Post, id=post_id)
+	content={
+		"post":post,
+	}
+	return render(request, 'test2.html', content)

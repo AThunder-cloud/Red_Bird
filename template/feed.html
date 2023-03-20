@@ -34,8 +34,8 @@
         <textarea readonly >{{post.post_title}}</textarea>
       {% endif %}
     </div>
-    <a href="#">
-    <div class="post-body-section">
+    <!-- <a href="{% url 'post-page' post.id %}"> -->
+    <div class="post-body-section" ondblclick="jumpPost({value1:'{{post.id}}',value2:'{{csrf_token}}'})">
             <!-- written content section -->
         <div>
             <textarea readonly spellcheck="disable">{{post.text_body}}</textarea>

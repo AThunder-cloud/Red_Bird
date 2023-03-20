@@ -63,3 +63,18 @@ function closeModal(){
     popup.style.transform="translate(-50%,-50%) scale(.1)";
     popup.style.visibility="hidden"; 
 }
+
+function jumpPost(postId){
+    post_id = postId.value1;
+    csrf_token = postId.value2;
+    $.ajax({
+        type:'POST',
+        url:"/postpage/" + post_id + '/',
+        data: {
+            csrfmiddlewaretoken:csrf_token,   
+        },
+        contentType:"application/json; charset=utf-8",
+        dataType:"json",
+    });
+
+}
