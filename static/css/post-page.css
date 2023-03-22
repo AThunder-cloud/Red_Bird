@@ -1,19 +1,42 @@
-.content-contianer{
+/* .postpopup{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%,-50%) scale(0.1); 
+    transform: translate(-50%,45px) scale(1); 
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    opacity: 1;
+    visibility: visible;
+    overflow-y: scroll;
+    max-height: calc(100vh - 50px);
+    z-index: +1;
+} */
+@font-face {
+    font-family:"Comic" ;
+    src: url("/static/fonts/Comic_Neue/ComicNeue-Light.ttf") format("truetype");
+}
+@font-face {
+    font-family: "Concert";
+    src: url("/static/fonts/Concert_One/ConcertOne-Regular.ttf") format("truetype");
+  }
+.content-container{
     display:flex;
     flex-direction: column;
-    background-color:rgb(255, 112, 112);
+    background-color:rgb(255, 100, 100);
     color:black;
     width:fit-content;
-    min-width: 700px;
+    min-width: 750px;
     height:fit-content;
     border: 1px solid black;
     margin-left: auto;
     margin-right: auto;
+    overflow-y: scroll;
 }
+.content-container::-webkit-scrollbar{ display: none;}
 .content-head{
     display: flex;
     width:fit-content;
-    min-width: 700px;
+    min-width: 750px;
     height:auto; 
     background-color:transparent;
     cursor: pointer; 
@@ -40,7 +63,7 @@
 .content-title{
     background-color:transparent;
     width: fit-content;
-    min-width: 700px;
+    min-width: 750px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -51,22 +74,28 @@
     gap:20px;
 }
 .content-genres img{
-    border: 0;
-    border-radius: 0;
+    object-fit: cover;
+    width:60px;
+    height:60px;
+    margin:0px;
+    border: none;
 }
 
 .content-title textarea{
+    font-family: "Concert";
+    font-size:22px;
+    font-weight:1000 ;
+
     background-color: transparent;
+    color: black;
     width:100%;
     outline: none;
     box-sizing: border-box;
     padding:2px;
-    border: none;
-    font-size:20px;
-    font-weight:1000 ;
     resize: none;
     text-align: center;
     cursor: pointer;
+    border:none;
     border-bottom:1px  solid black;
     border-top:1px  solid black;
 
@@ -76,12 +105,14 @@
     display: grid;
     grid-template-rows: auto;  
     width:fit-content;
-    min-width: 700px;
+    min-width: 750px;
     margin-left: auto;
     margin-right: auto;
 }
 
 .content-body textarea{
+    font-family: "Comic";
+    font-weight:1000;
     background-color: transparent;
     width:100%;
     outline: none;
@@ -113,11 +144,12 @@ textarea::-webkit-scrollbar{display: none;}
     display: flex;
     flex-direction: column;
     row-gap: 10px;
-    background-color:rgb(219, 255, 142);
+    background-color:rgb(255, 100, 100);
     width: fit-content;
-    min-width: 700px;
+    min-width: 750px;
     margin-left: auto;
     margin-right: auto;
+    padding-bottom: 10px ;
 }
 .make-comment{
     margin-left: auto;
@@ -133,13 +165,15 @@ textarea::-webkit-scrollbar{display: none;}
     height:100%;
     background-color: rgb(255, 187, 99);
 }
-input[type=text]{
+.make-comment form input{
     background-color: transparent;
     width: 500px;
     height: 50px;
+    border: none;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
+    padding-right:50px ;
 }
 
 .comment-section{
@@ -162,7 +196,7 @@ input[type=text]{
 }
 .comment a{
     text-decoration: none;
-    color: red;
+    color: rgb(0, 0, 0);
 }
 
 .comment-foot{
@@ -193,7 +227,9 @@ input[type=text]{
 }
 .comment-info{
     display: flex;
-    flex-direction: column;}
+    flex-direction: column;
+    color: black;
+}
 
 
 

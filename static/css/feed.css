@@ -17,6 +17,8 @@
     cursor: pointer; 
     border-radius:10px 10px 0px 0px;
     padding:2px;
+
+    position: relative;
 }
 .user-name{
     display:flex;
@@ -48,6 +50,14 @@
 }
 .post-head-section a{text-decoration: none; color: rgb(255, 255, 255); margin: 3px;}
 .post-head-section h6{ color:rgb(255, 255, 255);margin: 7px;}
+
+.post-head-section span img{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top:5px;
+    right:5px;
+}
 .post-title{
     background-color:transparent;
 }

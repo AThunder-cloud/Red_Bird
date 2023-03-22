@@ -11,7 +11,7 @@
         </li>
         <li>
             <a href="{% url 'create-post' %}">
-            <img src="{% static 'default-img/icons/Edit-icon.svg' %}">
+            <img src="{% static 'default-img/icons/feather-solid.svg' %}">
             <span>Create</span></a>
         </li>
         {% if user.is_authenticated %}
@@ -19,6 +19,11 @@
             <a href="{% url 'profile' user.id %}">
             <img src="{% static 'default-img/icons/Search-icon.svg' %}">
             <span>Profile</span></a>
+        </li>
+        <li>
+            <a href="{% url 'index' %}">
+            <img src="{% static 'default-img/icons/Search-icon.svg' %}">
+            <span>Feed</span></a>
         </li>
         <li>
             <a href="{% url 'signin' %}">

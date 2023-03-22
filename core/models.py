@@ -33,6 +33,7 @@ class Post(models.Model):
     image = models.ImageField(upload_to='post_images', null=True,blank=True, default='None')
     genres = models.ManyToManyField(Genre)
     no_likes = models.IntegerField(default=0)
+    no_comments = models.IntegerField(default=0)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
     
@@ -51,8 +52,8 @@ class Like(models.Model):
         return self.username
 
 class Comment(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,editable=None, related_name='comments') # related name specifies reverse relationship to user 
+    post = models.ForeignKey(Post, on_delete=models.CASCADE,editable=None, related_name='comments')
     text = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 

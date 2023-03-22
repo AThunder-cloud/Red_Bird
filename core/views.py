@@ -7,6 +7,8 @@ from .models import Profile,Post, Genre, Like, Followers, Comment
 from django.contrib.auth import authenticate, login, logout
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+
+from django.core import serializers
 # Create your views here.
 
 
@@ -65,6 +67,7 @@ def signin(request):
 			redirect('/loginPage')
 	return render(request,'signin.html')
 
+@login_required(login_url="signin")
 def signout(request):
 	if request.user.is_authenticated:
 		auth.logout(request)
@@ -101,6 +104,7 @@ def post(request):
 	}
 	return render(request, 'feed.html',context)
 
+@login_required(login_url="signin")
 def create_post(request):
 	if request.method  == "POST":
 		title = request.POST.get('title')
@@ -136,7 +140,6 @@ def delete(request, item_id):
 def profile(request):
 	return render(request, 'profile.html')
 
-
 def like_post(request):
 	username = request.user.username
 	post_id = request.GET.get("post_id")
@@ -155,10 +158,29 @@ def like_post(request):
 		post.save()
 		return redirect('/')
 
-@csrf_exempt
+@login_required(login_url="signin")
 def post_page(request, post_id):
+	posts = Post.objects.all()
 	post = get_object_or_404(Post, id=post_id)
-	content={
+	comments = post.comments.all()
+	context = {
 		"post":post,
-	}
-	return render(request, 'test2.html', content)
+		"posts" : posts,
+		"comments":comments
+		}
+	return render(request,'main.html',context)
+
+@login_required
+def add_comment(request):
+	if request.method == 'POST':
+		post_id = request.POST.get("post_id")
+		postobj = get_object_or_404(Post, id=post_id)
+		text = request.POST.get('comment')
+		user = request.user
+		post = postobj
+		comment = Comment.objects.create(user=user, post=post, text=text)
+		postobj.no_comments += 1
+		postobj.save()
+		return redirect('postpage', post_id=post_id)
+	else:
+		return render(request, 'main.html', {'post_id': post_id})

@@ -1,12 +1,13 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/feed.css' %}">
 <link rel="stylesheet" href="{% static 'css/delete-modal.css' %}">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
 <!-- post fetching block start -->
 {% for post in posts %}
 <div class="post-defination">
-
+    
     <!-- user name section -->
     <div  class="post-head-section">
       <div>
@@ -14,7 +15,7 @@
       </div> 
       <a href="{% url 'profile' post.author.user.id %}">
       <div class="user-name">
-          <span>Monkey D Luffy</span>
+          <span>{{post.author.user.first_name}} {{post.author.user.last_name}} </span>
           <span>@{{post.author.user.username}}</span>
       </div>
       </a>
@@ -26,6 +27,8 @@
           <img loading="lazy" id="genre-icon" src="{{genre.genre_img.url}}" alt="{{genre.name}}"> 
         {% endfor %}
       </div>
+      <span href="#" type="submit" class="open-delete" onclick="deleteModal({value1:'{{post.id}}', value2:'{{post.post_title}}', value3:'{{csrf_token}}'})">
+      <img src="/static/default-img/remove.png"></span>
     </div>
     <!-- user name section ends -->
 
@@ -34,7 +37,7 @@
         <textarea readonly >{{post.post_title}}</textarea>
       {% endif %}
     </div>
-    <!-- <a href="{% url 'post-page' post.id %}"> -->
+    <a href="{% url 'postpage' post.id %}">
     <div class="post-body-section" ondblclick="jumpPost({value1:'{{post.id}}',value2:'{{csrf_token}}'})">
             <!-- written content section -->
         <div>
@@ -52,11 +55,12 @@
     </div>
   </a>
     <div class="post-foot-section">
-      <a href="/like-post?post_id={{post.id}}"><span class="foot-info">❤️{{post.no_likes}}</span></a>
-      <span class="foot-info">💬Comment</span>
+      <span class="foot-info">❤️{{post.no_likes}}</span>
+      <span class="foot-info">💬{{post.no_comments}}</span>
       <span class="foot-info">😒Dislike</span>
     </div>
 </div>
 {% endfor %}
 
 <script src="{% static 'js/delete.js' %}"></script>
+<script src="{% static 'js/jumpPost.js' %}"></script>
