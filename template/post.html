@@ -1,5 +1,5 @@
 {% load static %}
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+{% load profile_img_tag %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/post-page.css' %}">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <div class="postpopup">
@@ -15,11 +15,11 @@
             </div>
         </a>
         <div>
-            <h6>{{post.created_at}}</h6>
+            <h6>{{post.created | date:"d, M/y"}}</h6>
         </div> 
         <div class="content-genres">
             {% for genre in post.genres.all %}
-            <img loading="lazy" id="genre-icon" src="{{genre.genre_img.url}}" alt="{{genre.name}}"> 
+            <img loading="lazy" src="{{genre.genre_img.url}}" alt="{{genre.name}}" title="{{genre.name}}"> 
           {% endfor %}
         </div>
 
@@ -40,8 +40,8 @@
             <form method="POST" action="{% url 'add_comment' %}">
                 {% csrf_token %}
                 <input type="hidden" name="post_id" value="{{post.id}}">
-                <input type="text" name="comment" placeholder="Make a comment">
-                <button type="sumbit"><img src="/static/default-img/icons/feather-solid.svg"></button>
+                <input type="text" name="comment" required placeholder="Make a comment">
+                <button type="sumbit"><img src="{% static 'default-img/icons/feather-solid.svg' %}"></button>
             </form>
         </div>
         {% for comment in comments %}
@@ -49,15 +49,15 @@
             <div class="comment">
                 <p name="comment">{{comment.text}}</p>
                 <div class="comment-foot">
-                    <a href="#"><img src="{% url 'profile' comment.user.id %}"></a>
-                    <a href="#">
+                    <a href="{% url 'profile' comment.user.id %}"><img src="{% profile_img comment.user.id %}"></a>
+                    <a href="{% url 'profile' comment.user.id %}">
                         <div class="comment-info">
-                            <span>{{comment.created_at}}</span>
+                            <span>{{comment.created_at | date:"d, M/y"}}</span>
                             <span>{{comment.user.first_name}} {{comment.user.last_name}} | @{{comment.user.username}}</span>
                         </div>
                     </a>
                     <span href="#" type="submit" class="open-delete" onclick="deleteModal({value1:'{{post.id}}', value2:'{{post.post_title}}', value3:'{{csrf_token}}'})">
-                        <img src="/static/default-img/remove.png"></span>
+                        <img src="{% static 'default-img/remove.png' %}"></span>
                 </div>
             </div>
         </div>

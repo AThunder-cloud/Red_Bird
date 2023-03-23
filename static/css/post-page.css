@@ -13,7 +13,7 @@
 } */
 @font-face {
     font-family:"Comic" ;
-    src: url("/static/fonts/Comic_Neue/ComicNeue-Light.ttf") format("truetype");
+    src: url("/static/fonts/Comic_Neue/ComicNeue-Bold.ttf") format("truetype");
 }
 @font-face {
     font-family: "Concert";
@@ -22,12 +22,11 @@
 .content-container{
     display:flex;
     flex-direction: column;
-    background-color:rgb(255, 100, 100);
+    background-color:transparent;
     color:black;
     width:fit-content;
     min-width: 750px;
     height:fit-content;
-    border: 1px solid black;
     margin-left: auto;
     margin-right: auto;
     overflow-y: scroll;
@@ -70,15 +69,26 @@
 
 .content-genres{
     display: flex;
-    margin-left: 10px;
+    margin-left: auto;
     gap:20px;
 }
 .content-genres img{
     object-fit: cover;
-    width:60px;
-    height:60px;
+    width:40px;
+    height:40px;
     margin:0px;
     border: none;
+    border-radius: 0;
+}
+.content-genres img:hover::after{
+    content: attr(title);
+    background-color: black;
+    color: white;
+    padding: 5px;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .content-title textarea{
@@ -128,7 +138,6 @@ textarea::-webkit-scrollbar{display: none;}
 .postImage{
     width:fit-content;
     height:fit-content;
-    /* background-color: rgb(59, 59, 59); */
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 10px;
@@ -141,10 +150,10 @@ textarea::-webkit-scrollbar{display: none;}
 }
 
 .comments-container{
+    background-color: transparent;
     display: flex;
     flex-direction: column;
     row-gap: 10px;
-    background-color:rgb(255, 100, 100);
     width: fit-content;
     min-width: 750px;
     margin-left: auto;
@@ -163,7 +172,7 @@ textarea::-webkit-scrollbar{display: none;}
     right:0;
     width:40px;
     height:100%;
-    background-color: rgb(255, 187, 99);
+    background-color: rgb(255, 50, 100);
 }
 .make-comment form input{
     background-color: transparent;

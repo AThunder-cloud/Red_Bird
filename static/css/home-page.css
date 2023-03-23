@@ -55,7 +55,7 @@ html{
 }
 .search-tab{
   background-color: rgb(40, 40, 40);
-  border-bottom: 1px solid #e65050;
+  border-bottom: 1px solid rgb(255, 100, 100);
   width:100%;
   height:fit-content;
   padding:10px 20px;
@@ -63,15 +63,15 @@ html{
 
 .body-section{
   display: grid;
-  grid-template-columns:180px 1fr 1fr;
+  grid-template-columns:180px 1fr ;
   gap:10px;
 }
 .navigation-panel{
   font-family: "ComicB",sans-serif;
   font-weight: 1000;
-  border-right:1px solid rgb(255, 85, 85) ;
+  border-right:3px solid rgb(255, 100, 100) ;
   width:180px;
-  height:100vh;
+  height:calc(100vh - 80px);
   display:grid;
   grid-template-rows:50% 50%;
 }
@@ -82,12 +82,11 @@ html{
   grid-auto-rows:max-content;
   gap:10px;
   width:1200px;
-  height:925px;
+  height:calc(100vh - 100px);
   overflow-y: scroll;
   scroll-behavior: smooth;
 
   font-family:"Macondo",sans-serif;
-  /* margin-left:50px; */
   margin-right: auto;
 }
 .post-container::-webkit-scrollbar{

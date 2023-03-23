@@ -13,7 +13,7 @@
     display: flex; 
     width:auto;
     height:max-content; 
-    background-color:#393939;
+    background-color:rgb(40, 40, 40);
     cursor: pointer; 
     border-radius:10px 10px 0px 0px;
     padding:2px;
@@ -47,6 +47,16 @@
     height: 30px;
     margin: 0px;
     margin-left:5px ;
+}
+#genre-icon:hover::after{
+    content: attr(title);
+    background-color: black;
+    color: white;
+    padding: 5px;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 .post-head-section a{text-decoration: none; color: rgb(255, 255, 255); margin: 3px;}
 .post-head-section h6{ color:rgb(255, 255, 255);margin: 7px;}
@@ -121,10 +131,9 @@ textarea::-webkit-scrollbar{display: none;}
 }
 
 .post-foot-section span{
-    font-size: 13px;
+    font-size: 14px;
     margin:1px ;
     padding: 2px;
-    border:1px solid #1e1e24;
     border-radius: 50px;
     cursor:pointer;
 }

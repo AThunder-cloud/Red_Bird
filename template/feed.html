@@ -20,15 +20,17 @@
       </div>
       </a>
       <div>
-          <h6>{{post.created | date:"F d Y"}}</h6>
+          <h6>{{post.created | date:"d, M/y"}}</h6>
       </div>  
       <div>
         {% for genre in post.genres.all %}
-          <img loading="lazy" id="genre-icon" src="{{genre.genre_img.url}}" alt="{{genre.name}}"> 
+          <img loading="lazy" id="genre-icon" src="{{genre.genre_img.url}}" title="{{genre.name}}" > 
         {% endfor %}
       </div>
-      <span href="#" type="submit" class="open-delete" onclick="deleteModal({value1:'{{post.id}}', value2:'{{post.post_title}}', value3:'{{csrf_token}}'})">
+      {% if post.author.user == request.user %}
+      <span type="submit" class="open-delete" onclick="deleteModal({value1:'{{post.id}}', value2:'{{post.post_title}}', value3:'{{csrf_token}}'})">
       <img src="/static/default-img/remove.png"></span>
+      {% endif %}
     </div>
     <!-- user name section ends -->
 
@@ -57,7 +59,6 @@
     <div class="post-foot-section">
       <span class="foot-info">❤️{{post.no_likes}}</span>
       <span class="foot-info">💬{{post.no_comments}}</span>
-      <span class="foot-info">😒Dislike</span>
     </div>
 </div>
 {% endfor %}

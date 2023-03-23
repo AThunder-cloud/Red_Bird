@@ -30,7 +30,6 @@
 }
 
 .navigation-div ul li a{
-    font-family: Macondo;
     display: flex;
     align-content: center;
     height: auto;
@@ -69,8 +68,9 @@
     padding: 10px;
     row-gap: 10px;
 }
+.profile-div a{text-decoration: none; color: rgb(255, 255, 255); margin-right:auto;margin-left: auto;}
 
-.profile-div img{
+.profile-div a img{
     width: 70px;;
     height: 70px;
     border-radius: 50%;
@@ -79,7 +79,8 @@
     margin-right: auto;
 
 }
-.profile-div h3{
+
+.profile-div a h3{
     justify-content: center;
     align-items: center;
     margin-left: auto;
