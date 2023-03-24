@@ -33,7 +33,7 @@
 *{
   margin: 0;
   padding: 0;
-  font-family:"Comic",sans-serif;
+  font-family:"ComicB",sans-serif;
   font-weight:1000;
 }
 html{
@@ -67,8 +67,6 @@ html{
   gap:10px;
 }
 .navigation-panel{
-  font-family: "ComicB",sans-serif;
-  font-weight: 1000;
   border-right:3px solid rgb(255, 100, 100) ;
   width:180px;
   height:calc(100vh - 80px);
@@ -86,7 +84,6 @@ html{
   overflow-y: scroll;
   scroll-behavior: smooth;
 
-  font-family:"Macondo",sans-serif;
   margin-right: auto;
 }
 .post-container::-webkit-scrollbar{

@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
-from django.core import serializers
+from django.db.models import Q
 # Create your views here.
 
 
@@ -63,7 +63,7 @@ def signin(request):
 			auth.login(request,user)
 			return redirect('index')
 		else:
-			messages.error(request,'Password not matching')
+			messages.error(request,'Username & Password not matching')
 			redirect('/loginPage')
 	return render(request,'signin.html')
 
@@ -78,7 +78,12 @@ def signout(request):
 
 
 def index(request):
-	posts = Post.objects.filter()
+	q = request.GET.get('q', '') 
+	posts = Post.objects.filter(
+		Q(post_title__icontains=q) |
+		Q(genres__name__icontains=q) |
+		Q(author__user__username__icontains=q) 
+	).distinct()
 	images = Post.objects.only('image')
 	context = {
 	'posts' : posts,
@@ -86,6 +91,7 @@ def index(request):
 	}
 	return render(request,'index.html',context)
 
+@login_required(login_url="signin")
 def user_profile(request, pk):
 	user = User.objects.get(id=pk)
 	posts = Post.objects.filter(author= user.profile)
@@ -137,12 +143,33 @@ def delete(request, item_id):
 		return JsonResponse({'success':True}) 
 	return JsonResponse({"success":False})
 
-def profile(request):
-	return render(request, 'profile.html')
+# @login_required(login_url="signin")
+# def profile(request):
+# 	return render(request, 'profile.html')
 
+# @login_required(login_url="signin")
+# def like_post(request):
+# 	username = request.user.username
+# 	post_id = request.GET.get("post_id")
+# 	post = get_object_or_404(Post, id=post_id)
+# 	like = Like.objects.filter(post_id=post_id, username=username).first()
+
+# 	if like == None:
+# 		new_like = Like.objects.create(post_id=post_id, username=username)
+# 		new_like.save()
+# 		post.no_likes += 1
+# 		post.save()
+# 		return redirect('/')
+# 	else:
+# 		like.delete()
+# 		post.no_likes -= 1
+# 		post.save()
+# 		return redirect('/')
+
+@login_required(login_url="signin")
 def like_post(request):
 	username = request.user.username
-	post_id = request.GET.get("post_id")
+	post_id = request.POST.get("post_id")
 	post = get_object_or_404(Post, id=post_id)
 	like = Like.objects.filter(post_id=post_id, username=username).first()
 
@@ -151,22 +178,30 @@ def like_post(request):
 		new_like.save()
 		post.no_likes += 1
 		post.save()
-		return redirect('/')
+		return JsonResponse({"liked":True})
 	else:
 		like.delete()
 		post.no_likes -= 1
 		post.save()
-		return redirect('/')
-
+		return JsonResponse({"liked":False})
+		
 @login_required(login_url="signin")
 def post_page(request, post_id):
 	posts = Post.objects.all()
 	post = get_object_or_404(Post, id=post_id)
 	comments = post.comments.all()
+	username = request.user.username
+	like = Like.objects.filter(post_id=post_id, username=username).first()
+	if like == None:
+		is_liked = False
+	else:
+		is_liked = True
+	print(is_liked)
 	context = {
 		"post":post,
 		"posts" : posts,
-		"comments":comments
+		"comments":comments,
+		"is_liked": is_liked
 		}
 	return render(request,'main.html',context)
 

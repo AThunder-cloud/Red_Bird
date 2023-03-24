@@ -76,6 +76,17 @@
 		margin-right: auto;
 		font-size:18px;
 	}
+	.message-box{
+		width: fit-content;
+		height: fit-content;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	h4{
+		font-family:"Concert";
+		color: rgb(250, 255, 107);
+		font-size: 30px;
+	}
 
 </style>
 
@@ -96,5 +107,9 @@
 	</form>
 	
 </div>
-
+{% if messages %}
+{% for message in messages %}
+<div class="message-box"><h4>{{message}}</h4></div>
+{% endfor %}
+{% endif %}
 

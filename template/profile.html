@@ -56,7 +56,8 @@
         height: 200px;
         border-radius: 50%;
         background-color: transparent;
-        border:4px solid rgb(241, 75, 75);
+        border: 4px solid white;
+        box-shadow: 0 0 20px 5px rgb(255, 98, 98);
         object-fit: cover; 
         margin-top: 20px;
         margin-left: auto;
@@ -132,6 +133,7 @@
             <hr>
             <textarea readonly>{{user.profile.bio}}</textarea>
             <script src="/static/js/post-page.js"></script>
+            <hr>
         </div>
         <div class="profile-post">
            {% include 'feed.html' %}

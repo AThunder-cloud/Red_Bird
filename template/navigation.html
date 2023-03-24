@@ -44,8 +44,11 @@
 <div class="profile-div">
     {% if request.user.is_authenticated%}
     <a href="{% url 'profile' user.id %}">
-    <img src="{% profile_img user.id %}">
-    <h3>@{{user}}</h3></a>
+        <div class="profile-img">
+            <img src="{% profile_img user.id %}">
+        </div>
+        <span> @{{user}}</span>
+   </a>
     {% else %}
     <!-- <h4>AnonymouseUser</h4> -->
     {% endif %}

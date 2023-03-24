@@ -64,25 +64,36 @@
 .profile-div{
     display: flex;
     flex-direction: column;
-    color: aliceblue;
-    padding: 10px;
-    row-gap: 10px;
+    width: 100%;
 }
-.profile-div a{text-decoration: none; color: rgb(255, 255, 255); margin-right:auto;margin-left: auto;}
+.profile-div a{
+    display: inherit;
+    flex-direction: column;
+    text-decoration: none;
+    color: white;
 
-.profile-div a img{
-    width: 70px;;
-    height: 70px;
+    margin-top: auto;
+    margin-bottom: 100px;
+}
+.profile-img{
+    width:100px;
+    height:100px;
     border-radius: 50%;
-    object-fit: cover; /* to fit img in center*/
     margin-left: auto;
     margin-right: auto;
-
+    border: 4px solid white;
+    box-shadow: 0 0 20px  rgb(255, 98, 98);
+}
+.profile-img img{
+    object-fit: cover;
+    width:100%;
+    height:100%;
+    border-radius: 50%;
 }
 
-.profile-div a h3{
-    justify-content: center;
-    align-items: center;
+.profile-div a span{
+    font-size: 20px;
+    margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
 }
