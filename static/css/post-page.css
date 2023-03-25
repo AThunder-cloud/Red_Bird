@@ -20,7 +20,7 @@
     src: url("/static/fonts/Concert_One/ConcertOne-Regular.ttf") format("truetype");
   }
 .content-container{
-    position: relative;
+    /* position: relative; */
     display:flex;
     flex-direction: column;
     background-color:transparent;
@@ -137,6 +137,7 @@
 }
 textarea::-webkit-scrollbar{display: none;}
 .postImage{
+    position: relative;
     width:fit-content;
     height:fit-content;
     margin-left: auto;
@@ -175,6 +176,7 @@ textarea::-webkit-scrollbar{display: none;}
     width:40px;
     height:100%;
     background-color: rgb(255, 50, 100);
+    padding: 4px;
 }
 .make-comment form input{
     background-color: transparent;
@@ -244,28 +246,21 @@ textarea::-webkit-scrollbar{display: none;}
 
 #post-like-button{
     position: absolute;
-    top: 428px;
-    left: 54px;
-    width:50px;
-    height:50px;
+    top: 100px;
+    left: -120px;
+    width:fit-content;
+    height:fit-content;
     border-radius: 50%;
     cursor: pointer;
     background-color: transparent;
-    border: none;
+    border:none;
     outline: none;
 }
 
-/* #post-like-button #heart-path{
-    fill: rgb(71, 71, 71);
-} */
-/* #post-like-button.liked{
-    background-color:rgba(0, 166, 255, 0.761) ;
-    box-shadow: 0 0 10px 5px rgb(0, 166, 255), 0 0 20px rgb(0, 166, 255);
-} */
-#post-like-button.liked #heart-path{
-    fill: red;
-
+#post-like-button svg{
+    filter: drop-shadow(5px 5px 4px rgb(76, 76, 76));
 }
+
 
 
 

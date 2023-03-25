@@ -10,6 +10,7 @@ function OnInput() {
 }
 
 var likeBtn = document.getElementById('post-like-button');
+var heartSvg = document.getElementById('heart-svg');
 
 likeBtn.addEventListener('click', function(){
   var postId = likeBtn.getAttribute('data-post-id');
@@ -22,9 +23,9 @@ likeBtn.addEventListener('click', function(){
     if(xhr.status === 200){
       var response = JSON.parse(xhr.responseText);
       if(response.liked){
-        likeBtn.classList.add('liked');
+        heartSvg.setAttribute("fill", "red");
       }else{
-        likeBtn.classList.remove('liked');
+        heartSvg.setAttribute("fill", "grey");
       }
     }
   };

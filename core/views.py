@@ -76,9 +76,9 @@ def signout(request):
 		messages.info(request, 'User is not loged in')
 		return redirect('index')
 
-
 def index(request):
-	q = request.GET.get('q', '') 
+	if request.method == "GET":
+		q = request.GET.get('q', '') 
 	posts = Post.objects.filter(
 		Q(post_title__icontains=q) |
 		Q(genres__name__icontains=q) |
@@ -102,7 +102,13 @@ def user_profile(request, pk):
 	return render(request, 'profile.html',context)
 
 def post(request):
-	posts = Post.objects.all()
+	if request.method == "GET":
+		q = request.GET.get('q', '') 
+	posts = Post.objects.filter(
+		Q(post_title__icontains=q) |
+		Q(genres__name__icontains=q) |
+		Q(author__user__username__icontains=q) 
+	).distinct()
 	images = Post.objects.only('image')
 	context = {
 	'posts' : posts,
@@ -187,7 +193,13 @@ def like_post(request):
 		
 @login_required(login_url="signin")
 def post_page(request, post_id):
-	posts = Post.objects.all()
+	if request.method == "GET":
+		q = request.GET.get('q', '') 
+	posts = Post.objects.filter(
+		Q(post_title__icontains=q) |
+		Q(genres__name__icontains=q) |
+		Q(author__user__username__icontains=q) 
+	).distinct()
 	post = get_object_or_404(Post, id=post_id)
 	comments = post.comments.all()
 	username = request.user.username
@@ -196,7 +208,6 @@ def post_page(request, post_id):
 		is_liked = False
 	else:
 		is_liked = True
-	print(is_liked)
 	context = {
 		"post":post,
 		"posts" : posts,

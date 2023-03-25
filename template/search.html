@@ -11,7 +11,7 @@
     margin-right:100px;
 }
 .brand-name-div img{
-    object-position: center;
+    object-position: contain;
     height:auto;
     width: 190px;
     margin-left: auto;
@@ -55,9 +55,10 @@
 
 <div class="search-div">
     <div class="brand-name-div">
-        <img src="{% static 'default-img/Name1.png' %}" alt="No Image Found">
+        <img src="{% static 'default-img/icons/Red_bird-icon.svg' %}" alt="">
     </div>
-    <form action="{% url 'index' %}" method="GET" class="search-form">
+    <form  method="GET" class="search-form">
+        {% csrf_token %}
         <input class="search-bar" name="q" type="text" placeholder="Search...">
         <button type="submit" id="searchButton"><img src="{% static 'default-img/icons/Search-icon.svg' %}" alt="" srcset=""></button>
         <script>
