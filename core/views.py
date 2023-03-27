@@ -85,9 +85,11 @@ def index(request):
 		Q(author__user__username__icontains=q) 
 	).distinct()
 	images = Post.objects.only('image')
+	profiles = Profile.objects.filter(Q(user__username__icontains=q)).distinct()
 	context = {
 	'posts' : posts,
-	'images': images
+	'images': images,
+	'profiles' :profiles,
 	}
 	return render(request,'index.html',context)
 
@@ -109,6 +111,7 @@ def post(request):
 		Q(genres__name__icontains=q) |
 		Q(author__user__username__icontains=q) 
 	).distinct()
+	# posts =Post.objects.all()
 	images = Post.objects.only('image')
 	context = {
 	'posts' : posts,
@@ -148,29 +151,6 @@ def delete(request, item_id):
 		post.delete()
 		return JsonResponse({'success':True}) 
 	return JsonResponse({"success":False})
-
-# @login_required(login_url="signin")
-# def profile(request):
-# 	return render(request, 'profile.html')
-
-# @login_required(login_url="signin")
-# def like_post(request):
-# 	username = request.user.username
-# 	post_id = request.GET.get("post_id")
-# 	post = get_object_or_404(Post, id=post_id)
-# 	like = Like.objects.filter(post_id=post_id, username=username).first()
-
-# 	if like == None:
-# 		new_like = Like.objects.create(post_id=post_id, username=username)
-# 		new_like.save()
-# 		post.no_likes += 1
-# 		post.save()
-# 		return redirect('/')
-# 	else:
-# 		like.delete()
-# 		post.no_likes -= 1
-# 		post.save()
-# 		return redirect('/')
 
 @login_required(login_url="signin")
 def like_post(request):
@@ -216,6 +196,11 @@ def post_page(request, post_id):
 		}
 	return render(request,'main.html',context)
 
+def profile_list(request):
+	profiles = Profile.objects.all()
+	context={'profiles':profiles}
+	return render(request, 'test.html' , context)
+
 @login_required
 def add_comment(request):
 	if request.method == 'POST':
@@ -230,3 +215,16 @@ def add_comment(request):
 		return redirect('postpage', post_id=post_id)
 	else:
 		return render(request, 'main.html', {'post_id': post_id})
+
+@login_required(login_url="signin")
+def delete_comment(request, item_id):
+	comment = get_object_or_404(Comment, id=item_id)
+	if request.user == comment.user:
+		post_id = comment.post.id
+		post = get_object_or_404(Post, id=post_id)
+		post.no_comments -= 1
+		post.save()
+		comment.delete()
+		return redirect('postpage', post_id=post_id)
+	else:
+		return f"Comment id={item_id} is not deleted"

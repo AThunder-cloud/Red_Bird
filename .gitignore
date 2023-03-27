@@ -9,7 +9,7 @@ fonts
 staticfiles
 
 assets
-
+run.sh
 # Backup files # 
 *.bak 
 

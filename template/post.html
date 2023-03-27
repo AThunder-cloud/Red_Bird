@@ -67,8 +67,9 @@
                             <span>{{comment.user.first_name}} {{comment.user.last_name}} | @{{comment.user.username}}</span>
                         </div>
                     </a>
-                    <span href="#" type="submit" class="open-delete" onclick="deleteModal({value1:'{{post.id}}', value2:'{{post.post_title}}', value3:'{{csrf_token}}'})">
-                        <img src="{% static 'default-img/remove.png' %}"></span>
+                    <a href="{% url 'delete_comment' comment.id %}">
+                    <span class="open-delete">
+                        <img src="{% static 'default-img/remove.png' %}"></span></a>
                 </div>
             </div>
 

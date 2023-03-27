@@ -1,44 +1,102 @@
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/test.css' %}">
+<style>
+    @font-face {
+        font-family:"ComicB" ;
+        src: url("/static/fonts/Comic_Neue/ComicNeue-Bold.ttf") format("truetype");
+    }
+    .profile-list-view{
+        font-family: "ComicB";
+        width: 350px;
+        height: 100vh;
+        display: grid;
+        grid-template-rows: repeat(auto-fill,minmax(100px, 1fr));
+        gap: 10px;
+    }
+    a{text-decoration: none; color:white;margin:0;padding: 0;}
+    .users-accounts{
+        display: flex;
+        background-color: rgb(40,40,40);
+        width: 100%;
+        height: 100%;
+        border-radius: 20px;
+    }
+    .user-profile{
+        width:70px;
+        height:70px;
+        border-radius: 50%;
+        border: 5px solid white;
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-left: 10px;
+        margin-right: 10px;
+        /* box-shadow: 0 0 20px 2px rgb(250, 255, 98); */
 
-<div class="test-div-container">
-    <!-- user name section -->
-    <div  class="test-element-user">
-        <img src="{% static 'default-img/icons/Profile-circle-icon.svg' %}" alt="" >
-        <a href="#">Name</a><h6>December 02 2022</h6>
-    </div>
-    <!-- user name section ends -->
-    <div>
-        <textarea readonly id="test-element-title">An Artist</textarea>
-    </div>
-    <div class="test-div-content-area">
-            <!-- written content section -->
-        <div>
-            <textarea readonly spellcheck="disable" class="test-element-text" name="test-element-text" >
-A artist can see abstract in mess
-Finding flaws in the best
-Beautiful is absolute perfect
-Relaity always have some defect
-Waht is reality he isn't aware 
-No dream, He seek colourful nightmares 
-</textarea>
-        </div>
-        <!-- wrriten content section ends -->
-        <!-- img section start  -->
-        <div class="test-element-img">
-            <img src="{% static 'default-img/backgound-2.jpeg' %}" alt="">
-        </div>
-        <!-- img section ends -->
+    }
+    .user-profile img{
+        object-fit: cover;
+        width:100%;
+        height:100%;
+        border-radius: 50%;
+    }
+    .user-info{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        align-items: center;
+        justify-content: center;
+        margin-left:auto ;
+        margin-right: auto;
+    }
+    .user-info span{
+        /* text-shadow: 2px 2px 10px rgb(255, 255, 98); */
+        color: rgb(255, 255, 255);
+    }
+    .actions{
+        display: flex;
+        flex-direction: column;
+        margin-left:auto ;
+    }
+    .actions button{
+        background-color:transparent;
+        margin-left: auto;
+        margin-top: auto;
+        margin-bottom: auto;
+        border-radius: 10px;
+        padding: 3px;    
+        color: rgb(255, 255, 255);
+        /* text-shadow: 2px 2px 10px rgb(255, 255, 98); */
 
-    </div>
-   
-    <div class="test-fotter">
-        <div>
-            <h6>December 2 2022</h6>
+    }
+</style>
+
+    <div class="profile-list-view">
+    {% for profile in profiles %}
+    <a href="{% url 'profile' profile.user.id %}">
+    <div class="users-accounts">
+        <div class="user-profile">
+            <img loading="lazy" src="{{profile.profile_img.url}}">
         </div>
-        <div>
-            <input type="button" id="Like" name="Like" value="❤️" class="test-button">
-            <input type="button" id="Comment" name="Comment" value="💬" class="test-button">
+        <div class="user-info">
+            <span>{{profile.user.first_name}} {{profile.user.last_name}}| @{{profile.user.username}}</span>
+            <span>Post-134  Likes-2344</span>
+            <span>Followers-326</span>
         </div>
-    </div>
+        <div class="actions">
+            <button>Follow</button>
+        </div>
+    </div></a>
+    <script>
+        var colors = ['#ff3d3d', '#fceb540','#49d8ff', '#62ff64', '#dd53ff']
+        $(".users-accounts").each(()=>{
+            var randomIndex = Math.floor(Math.random() * colors.length);
+            var randomColor = colors[randomIndex];
+            $('.user-info span').css({"text-shadow" : "2px 2px 10px " + randomColor,});
+            $('.user-profile').css({"box-shadow" : "0px 0px 20px 2px" + randomColor,});
+            $('.actions button').css({"text-shadow" : "2px 2px 15px " + randomColor,});
+        });
+    </script>
+    {% endfor %}
 </div>
+
+
+

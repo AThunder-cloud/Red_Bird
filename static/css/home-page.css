@@ -63,7 +63,7 @@ html{
 
 .body-section{
   display: grid;
-  grid-template-columns:180px 1fr ;
+  grid-template-columns:180px 1fr minmax(350px,370px);
   gap:10px;
 }
 .navigation-panel{
@@ -79,26 +79,27 @@ html{
   grid-template-columns:repeat(auto-fill,minmax(540px,1fr));
   grid-auto-rows:max-content;
   gap:10px;
-  width:1200px;
+  width:1100px;
   height:calc(100vh - 100px);
   overflow-y: scroll;
   scroll-behavior: smooth;
-
   margin-right: auto;
+  margin-left: auto;
 }
 .post-container::-webkit-scrollbar{
   display: none;
 }
 
-/* .active-panel{
-  height:925px;
-  width: 100%;
-  background-color:transparent;
+.active-panel{
+  background-color: rgb(70, 70, 70);
+  height:calc(100vh - 100px);
+  width: 350px;
   overflow-y: scroll;
   scroll-behavior:auto;
+  margin-right:100px;
 }
 
 .active-panel::-webkit-scrollbar{
   display: none;
-} */
+}
 
