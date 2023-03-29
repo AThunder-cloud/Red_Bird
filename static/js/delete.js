@@ -1,18 +1,3 @@
-// var popup = document.getElementById("popup");
-// var open = document.getElementsByClassName("open-delete");
-// var close = document.getElementById('close')
-// open.onclick =function(){
-// popup.style.visibility="visible";
-// popup.style.top= "50%";
-// popup.style.transform="translate(-50%,-50%) scale(1)"; 
-
-// }
-// close.onclick =function(){
-// popup.style.top= "0";
-// popup.style.transform="translate(-50%,-50%) scale(.1)";
-// popup.style.visibility="hidden"; 
-// }
-// var openButton = document.querySelector('.open-delete')
 var popup = document.querySelector('.popup');
 var delBtn = document.querySelector('.Confirm-delete');
 var post_id;
@@ -64,17 +49,18 @@ function closeModal(){
     popup.style.visibility="hidden"; 
 }
 
-function jumpPost(postId){
-    post_id = postId.value1;
-    csrf_token = postId.value2;
-    $.ajax({
-        type:'POST',
-        url:"/postpage/" + post_id + '/',
-        data: {
-            csrfmiddlewaretoken:csrf_token,   
-        },
-        contentType:"application/json; charset=utf-8",
-        dataType:"json",
-    });
+// function jumpPost(postId){
+//     post_id = postId.value1;
+//     csrf_token = postId.value2;
+//     $.ajax({
+//         type:'POST',
+//         url:"/postpage/" + post_id + '/',
+//         data: {
+//             csrfmiddlewaretoken:csrf_token,   
+//         },
+//         contentType:"application/json; charset=utf-8",
+//         dataType:"json",
+//     });
 
-}
+// }
+// ondblclick="jumpPost({value1:'{{post.id}}',value2:'{{csrf_token}}'})"

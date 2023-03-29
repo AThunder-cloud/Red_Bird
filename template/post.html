@@ -67,6 +67,7 @@
                             <span>{{comment.user.first_name}} {{comment.user.last_name}} | @{{comment.user.username}}</span>
                         </div>
                     </a>
+                    {% csrf_token %}
                     <a href="{% url 'delete_comment' comment.id %}">
                     <span class="open-delete">
                         <img src="{% static 'default-img/remove.png' %}"></span></a>
@@ -80,3 +81,4 @@
 </div>
 </div>
 <script src="/static/js/post-page.js"></script>
+<script src="/static/js/textareaExtender.js"></script>

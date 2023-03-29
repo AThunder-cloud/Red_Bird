@@ -13,46 +13,46 @@ from django.db.models import Q
 
 
 def signup(request):
-    if request.method == 'POST':
-        fname = request.POST['fname']
-        lname = request.POST['lname']
-        username = request.POST['username']
-        email = request.POST['email']
-        password = request.POST['password']
-        password2 = request.POST['cpassword']
+	if request.method == 'POST':
+		fname = request.POST['fname']
+		lname = request.POST['lname']
+		username = request.POST['username']
+		email = request.POST['email']
+		password = request.POST['password']
+		password2 = request.POST['cpassword']
 
-        if password == password2:
-            if User.objects.filter(email=email).exists():
-                messages.info(request, 'Email Taken')
-                return redirect('signup')
-            elif User.objects.filter(username=username).exists():
-                messages.info(request, 'Username Taken')
-                return redirect('signup')
-            else:
-                user = User.objects.create_user(
-                    first_name=fname, 
-                    last_name=lname, 
-                    username=username, 
-                    email=email, 
-                    password=password
-                    )
-                user.save()
+		if password == password2:
+			if User.objects.filter(email=email).exists():
+				messages.info(request, 'Email Taken')
+				return redirect('signup')
+			elif User.objects.filter(username=username).exists():
+				messages.info(request, 'Username Taken')
+				return redirect('signup')
+			else:
+				user = User.objects.create_user(
+					first_name=fname, 
+					last_name=lname, 
+					username=username, 
+					email=email, 
+					password=password
+					)
+				user.save()
 
-                #log user in and redirect to settings page
-                user_login = auth.authenticate(username=username, password=password)
-                auth.login(request, user_login)
+				#log user in and redirect to settings page
+				user_login = auth.authenticate(username=username, password=password)
+				auth.login(request, user_login)
 
-                #create a Profile object for the new user
-                user_model = User.objects.get(username=username)
-                new_profile = Profile.objects.create(user=user_model)
-                new_profile.save()
-                return redirect('index')
-        else:
-            messages.info(request, 'Password Not Matching')
-            return redirect('signup')
-        
-    else:
-        return render(request, 'signup.html')
+				#create a Profile object for the new user
+				user_model = User.objects.get(username=username)
+				new_profile = Profile.objects.create(user=user_model)
+				new_profile.save()
+				return redirect('index')
+		else:
+			messages.info(request, 'Password Not Matching')
+			return redirect('signup')
+		
+	else:
+		return render(request, 'signup.html')
 
 def signin(request):
 	if request.method == 'POST':
@@ -85,7 +85,11 @@ def index(request):
 		Q(author__user__username__icontains=q) 
 	).distinct()
 	images = Post.objects.only('image')
-	profiles = Profile.objects.filter(Q(user__username__icontains=q)).distinct()
+	profiles = Profile.objects.filter(
+		Q(user__username__icontains=q),
+		Q(user__first_name__icontains=q),
+		Q(user__last_name__icontains=q),
+		).distinct()
 	context = {
 	'posts' : posts,
 	'images': images,
@@ -216,15 +220,42 @@ def add_comment(request):
 	else:
 		return render(request, 'main.html', {'post_id': post_id})
 
-@login_required(login_url="signin")
+@login_required
 def delete_comment(request, item_id):
-	comment = get_object_or_404(Comment, id=item_id)
-	if request.user == comment.user:
+	comment = Comment.objects.get(id=item_id)
+	print(comment)
+	if request.user != comment.user:
+		return HttpResponse('You cannot delete this comment !!')
+
+	else:
 		post_id = comment.post.id
 		post = get_object_or_404(Post, id=post_id)
 		post.no_comments -= 1
 		post.save()
 		comment.delete()
 		return redirect('postpage', post_id=post_id)
-	else:
-		return f"Comment id={item_id} is not deleted"
+
+@login_required
+def edit_profile(request):
+	user = request.user
+	profile = Profile.objects.get(user=user)
+	if request.method == 'POST':
+		fname = request.POST.get('first_name')
+		lname = request.POST.get('last_name')
+		location = request.POST.get('location')
+		email = request.POST.get('email')
+		bio = request.POST.get('bio')
+		if User.objects.filter(email=email).exists() and user.email != email:
+			messages.info(request, 'Email address already taken')
+		else:
+			profile.profile_img = request.FILES.get('profile_image', profile.profile_img)
+			user.first_name = fname
+			user.last_name = lname 
+			profile.location = location
+			user.email = email
+			profile.bio = bio
+
+			user.save()
+			profile.save()
+			return redirect('profile',pk=request.user.id)
+	return render(request, 'edit-profile.html',{'profile' : profile})

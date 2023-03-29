@@ -1,14 +1,16 @@
 {% load static %}
 {% load profile_img_tag %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style>
     @font-face {
-        font-family:"UbuntuMono" ;
-        src: url("/static/fonts/Ubuntu_Mono/UbuntuMono-Bold.ttf") format("truetype");
+        font-family:"ComicB" ;
+        src: url("/static/fonts/Comic_Neue/ComicNeue-Bold.ttf") format("truetype");
         font-weight: 1000;
         font-style: bold;
     }
     *{
         border-color: rgb(255, 72, 72);
+        font-family:"ComicB",sans-serif;
     }
     body{
         display: flex;
@@ -17,10 +19,9 @@
         height: 100vh;
         margin: 0;
         padding: 0;
-        /* background-image:linear-gradient(-30deg, rgb(239, 240, 124),#ff2c55, #183a67); */
         background-color:rgb(40,40,40);
         backdrop-filter: blur(5px);
-        font-family:"UbuntuMono",sans-serif;
+
 
     }
     .container{
@@ -47,8 +48,17 @@
         height: 100%;
     }
     .profile-img{
+        position: relative;
         height: 240px;
         background-color: rgba(255, 255, 255, 0.917);
+    }
+    .profile-img a{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        text-decoration: none;color:black ;
+        border: 1px solid black;
+        padding: 5px;
     }
     .profile-panel img{
         display: block;
@@ -65,12 +75,14 @@
         transform-origin: center;
         transition: transform 0.3s ease-out;
     }
-    /* .profile-panel img:hover{
-        transform: scale(1.2);
+    .profile-panel img:hover{
+        background-color:white;
+        transform: scale(1.5);
         border-radius: 0;
         object-fit: contain;
         border: none;
-    } */
+        box-shadow: none;
+    }
     .profile-panel h2{
         margin-left: auto;
         margin-right: auto;
@@ -84,8 +96,6 @@
     }
 
     .profile-panel textarea{
-        width:200px;
-        height: fit-content;
         font-family: inherit;
         font-size:18px;
         margin-left: auto;
@@ -102,11 +112,11 @@
     }
 
     .profile-post{
+        font-family: inherit;
         display: grid;
         grid-template-columns: repeat(auto-fill,minmax(540px, 1fr));
         grid-auto-rows: max-content;
         gap: 10px;
-        /* border: 1px solid rgb(255, 72, 72); */
         width: 100%;
         height: 100%;
         overflow-y: scroll;
@@ -116,10 +126,6 @@
     .profile-post::-webkit-scrollbar{
         display: none;
     }
-    .item{
-        background-color: rgb(72, 72, 72);
-        border: 1px solid black;
-    }
 
 </style>
 
@@ -128,11 +134,12 @@
         <div class="profile-panel">
             <div class="profile-img">
                 <img src="{% profile_img user.id %}" alt="No Profile">
+                <a href="{% url 'edit-profile' %}">Edit Profile</a>
             </div>
-            <h2>{{user.first_name}} {{user.last_name}} <i>/</i><small> @{{user.username}}</small></h2>
+            <h2>{{user.first_name}} {{user.last_name}} |<small> @{{user.username}}</small></h2>
             <hr>
             <textarea readonly>{{user.profile.bio}}</textarea>
-            <script src="/static/js/post-page.js"></script>
+            <script src="/static/js/textareaExtender.js"></script>
             <hr>
         </div>
         <div class="profile-post">

@@ -71,30 +71,33 @@
 
     <div class="profile-list-view">
     {% for profile in profiles %}
-    <a href="{% url 'profile' profile.user.id %}">
-    <div class="users-accounts">
-        <div class="user-profile">
-            <img loading="lazy" src="{{profile.profile_img.url}}">
-        </div>
-        <div class="user-info">
-            <span>{{profile.user.first_name}} {{profile.user.last_name}}| @{{profile.user.username}}</span>
-            <span>Post-134  Likes-2344</span>
-            <span>Followers-326</span>
-        </div>
-        <div class="actions">
-            <button>Follow</button>
-        </div>
-    </div></a>
-    <script>
-        var colors = ['#ff3d3d', '#fceb540','#49d8ff', '#62ff64', '#dd53ff']
-        $(".users-accounts").each(()=>{
-            var randomIndex = Math.floor(Math.random() * colors.length);
-            var randomColor = colors[randomIndex];
-            $('.user-info span').css({"text-shadow" : "2px 2px 10px " + randomColor,});
-            $('.user-profile').css({"box-shadow" : "0px 0px 20px 2px" + randomColor,});
-            $('.actions button').css({"text-shadow" : "2px 2px 15px " + randomColor,});
-        });
-    </script>
+        <a href="{% url 'profile' profile.user.id %}">
+            <div class="users-accounts">
+                <div class="user-profile">
+                    <img loading="lazy" src="{{profile.profile_img.url}}">
+                </div>
+                <div class="user-info">
+                    <span>{{profile.user.first_name}} {{profile.user.last_name}} | @{{profile.user.username}}</span>
+                    <span>Post-134  Likes-2344</span>
+                    <span>Followers-326</span>
+                </div>
+                <div class="actions">
+                    <button>Follow</button>
+                </div>
+            </div>
+        </a>
+        <script>
+            var colors = ['#f74a4a', '#f7784a', '#ffe16b', '#d3ff6b','#aeff6b', 
+            '#81ff6b','#a7fad3','#57f7f7','#57baf7','#578ff7','#474afc',
+            '#7447fc', '#a547fc', '#d547fc', '#f947fc', '#fc47b1','#fc476b']
+            $(".users-accounts").each(()=>{
+                var randomIndex = Math.floor(Math.random() * colors.length);
+                var randomColor = colors[randomIndex];
+                $('.user-info span').css({"text-shadow" : "2px 2px 10px " + randomColor,});
+                $('.user-profile').css({"box-shadow" : "0px 0px 20px 2px" + randomColor,});
+                $('.actions button').css({"text-shadow" : "2px 2px 15px " + randomColor,});
+            });
+        </script>
     {% endfor %}
 </div>
 

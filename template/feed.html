@@ -40,7 +40,7 @@
       {% endif %}
     </div>
     <a href="{% url 'postpage' post.id %}">
-    <div class="post-body-section" ondblclick="jumpPost({value1:'{{post.id}}',value2:'{{csrf_token}}'})">
+    <div class="post-body-section" >
             <!-- written content section -->
         <div>
             <textarea readonly spellcheck="disable">{{post.text_body}}</textarea>
@@ -64,4 +64,3 @@
 {% endfor %}
 
 <script src="{% static 'js/delete.js' %}"></script>
-<script src="{% static 'js/jumpPost.js' %}"></script>

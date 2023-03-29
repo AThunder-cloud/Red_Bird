@@ -1,0 +1,171 @@
+<link rel="shortcut icon" href="/static/default-img/RedBird.ico" type="image/x-icon">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<style>
+	@font-face {
+		font-family:"Concert" ;
+		src: url("/static/fonts/Concert_One/ConcertOne-Regular.ttf") format("truetype");
+    }
+    @font-face {
+		font-family:"Comic" ;
+		src: url("/static/fonts/Comic_Neue/ComicNeue-Bold.ttf") format("truetype");
+    }
+
+	*{
+		font-family:"Concert";
+		background-color: rgb(41, 41, 41);
+	}
+	.container{
+		width: fit-content;
+		border-radius: 10px;
+		margin-left: auto;
+		margin-right:auto ;
+	}
+	form{
+		display: flex;
+		flex-direction:column ;
+		gap: 10px;
+		border:1px solid rgb(255, 255, 255);
+		color: rgb(255, 255, 255);
+		width: 700px;
+		height: fit-content;
+		margin-top:25%;
+		margin-left: auto;
+		margin-right: auto;
+		padding:10px ;
+		border-radius: 10px;
+	}
+	.form-title {
+		font-family: inherit;
+		margin-left:auto;
+		margin-right: auto;
+		font-size:24px;
+	}
+
+	.container label{
+		font-family: inherit;
+   		font-size: 16px;
+	}
+
+	input[type=text], input[type=password] {
+		font-family: inherit;
+		background-color: rgba(73, 73, 73, 0.555);
+		backdrop-filter: blur(5px);
+		padding: 8px 20px;
+		font-size: 18px;
+		color: white;
+		border:1px solid #ffffff;
+		border-radius: 10px;
+	}
+    input[type=file]::file-selector-button{
+        background-color: rgb(255, 100, 100);
+        border-radius: 4px;
+        color: #ffffff;
+        width: fit-content;
+        cursor: pointer;
+        padding: 3px;
+    }
+    input[type=file]{
+        border: 1px solid white;
+        width: fit-content;
+        padding: 2px;
+        border-radius: 4px;
+    }
+    textarea{
+        font-family:"Comic";
+        font-weight: 300;
+        background-color: rgba(73, 73, 73, 0.555);
+        backdrop-filter: blur(5px);
+        font-size: 16px;
+        font-weight: 500px;
+        color:rgb(255, 255, 255);
+        border:1px solid #ffffff ;
+        padding:8px 20px;
+        border-radius:10px ;
+        resize: none;
+        outline: none;
+    }
+    textarea::-webkit-scrollbar{
+        display: none;
+    }
+	button[type=submit]{
+		width: fit-content;
+		height:fit-content;
+		font-family: inherit;
+		font-size:20px;
+		background-color: rgb(255, 100, 100);
+		border-radius: 4px;
+		margin-left: auto;
+		margin-right: 5px;
+		padding:2px 4px 2px 4px;
+	}
+	a{
+		margin-left: auto;
+		margin-right: auto;
+		color: yellow;
+	}
+	span{
+		margin-left: auto;
+		margin-right: auto;
+		font-size:18px;
+	}
+	.message-box{
+		width: fit-content;
+		height: fit-content;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	h4{
+		font-family:"Concert";
+		color: rgb(250, 255, 107);
+		font-size: 30px;
+	}
+
+</style>
+
+<div class="container">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="first_name">First Name:</label>
+        <input type="text" name="first_name" value="{{ user.first_name }}" required>
+
+        <label for="last_name">Last Name:</label>
+        <input type="text" name="last_name" value="{{ user.last_name }}" required>
+
+        <label for="bio">Bio:</label>
+        <textarea name="bio">{{ profile.bio }}</textarea>
+
+        <label for="email">Email:</label>
+        <input type="text" name="email" value="{{ user.email }}" required>
+
+        <label for="location">Location:</label>
+        <input type="text" name="location" value="{{ profile.location }}">
+
+        <label for="profile_image">Profile Image:</label>
+        <input type="file" name="profile_image">
+
+        <button type="submit">Save Changes</button>
+      </form>
+</div>
+<script>
+    $.fn.autoHeight = function () {
+  return this.each(function () {
+    const tx = $(this);
+    tx.css("height", "auto").css("height", tx.prop("scrollHeight") + "px");
+    tx.on("input", function () {
+      this.style.height = "auto";
+      this.style.height = (this.scrollHeight) + "px";
+        });
+    });
+    };
+    $(document).ready(function () {
+    $('textarea').autoHeight();
+    });
+
+</script>
+{% if messages %}
+{% for message in messages %}
+<div class="message-box"><h4>{{message}}</h4></div>
+{% endfor %}
+{% endif %}
+
