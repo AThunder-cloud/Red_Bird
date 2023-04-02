@@ -28,7 +28,7 @@ class Genre(models.Model):
 class Post(models.Model):
     id = models.AutoField(primary_key=True, db_index=True)
     author = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
-    post_title = models.CharField(max_length=30,default=None, editable=True) #by default null is false
+    post_title = models.CharField(max_length=100,default=None, editable=True) #by default null is false
     text_body = models.TextField(max_length=2000,null=True) 
     image = models.ImageField(upload_to='post_images', null=True,blank=True, default='None')
     genres = models.ManyToManyField(Genre)

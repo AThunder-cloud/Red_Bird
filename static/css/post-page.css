@@ -12,10 +12,6 @@
     z-index: +1;
 } */
 @font-face {
-    font-family:"Comic" ;
-    src: url("/static/fonts/Comic_Neue/ComicNeue-Bold.ttf") format("truetype");
-}
-@font-face {
     font-family: "Concert";
     src: url("/static/fonts/Concert_One/ConcertOne-Regular.ttf") format("truetype");
   }
@@ -24,7 +20,9 @@
     display:flex;
     flex-direction: column;
     background-color:transparent;
-    color:black;
+    color:white;
+    /* border-left: 1px solid grey;
+    border-right: 1px solid grey; */
     width:fit-content;
     min-width: 750px;
     height:fit-content;
@@ -38,7 +36,9 @@
     width:fit-content;
     min-width: 750px;
     height:auto; 
-    background-color:transparent;
+    /* background-color:rgb(125, 142, 255); */
+    background-color: rgba(255, 255, 152, 0.85);
+    border: 2px solid black;
     cursor: pointer; 
     padding:5px;
     margin-left: auto;
@@ -54,20 +54,29 @@
     border: 1px double black;
 }
 
-.content-head a{text-decoration: none; margin: 3px;font-size: 20px;color: black;font-weight: 1000;}
-.content-head h6{margin: 7px;font-size: 16px;}
-.user-name{
+.content-head a{text-decoration: none;}
+.profile-user-name{
     display: flex;
     flex-direction:column ;
-}
-.content-title{
-    background-color:transparent;
-    width: fit-content;
-    min-width: 750px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 5px;
+    margin-top: auto;
+    margin-bottom: auto;
+    color: black;
 }
 
+.profile-user-name span:first-child{
+    font-size: 22px;
+    font-weight: 500;
+}
+.profile-user-name span:last-child{
+    font-size: 14px;
+    font-weight: 700;
+}
+.post-date span{
+    font-size: 22px;font-weight: 700;
+    color: rgb(0, 0, 0);
+    margin-left:10px;
+}
 .content-genres{
     display: flex;
     margin-left: auto;
@@ -92,43 +101,47 @@
     transform: translateX(-50%);
 }
 
+.content-title{
+    width: fit-content;
+    min-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+}
 .content-title textarea{
     font-family: "Concert";
-    font-size:22px;
-    font-weight:1000 ;
+    font-size:28px;
+    font-weight:600 ;
 
     background-color: transparent;
-    color: black;
+    color: rgb(255, 255, 255);
     width:100%;
+    height: 40px;
     outline: none;
     box-sizing: border-box;
     padding:2px;
     resize: none;
-    text-align: center;
+    text-align:center;
     cursor: pointer;
     border:none;
-    border-bottom:1px  solid black;
-    border-top:1px  solid black;
+    /* border-bottom:1px  solid black;
+    border-top:1px  solid black; */
 
 }
 
 .content-body{
-    display: grid;
-    grid-template-rows: auto;  
     width:fit-content;
     min-width: 750px;
     margin-left: auto;
     margin-right: auto;
 }
-
 .content-body textarea{
-    font-family: "Comic";
-    font-weight:1000;
     background-color: transparent;
+    color:whitesmoke;
+    font-weight: 400;
     width:100%;
     outline: none;
     box-sizing: border-box;
-    padding:2px;
+    padding:5px;
     border: none;
     font-size:20px;
     font-weight:550;
@@ -144,7 +157,6 @@ textarea::-webkit-scrollbar{display: none;}
     margin-right: auto;
     margin-bottom: 10px;
 }
-
 .postImage img{
     width:400px;
     height: auto;
@@ -162,7 +174,6 @@ textarea::-webkit-scrollbar{display: none;}
     margin-right: auto;
     padding-bottom: 10px ;
 }
-
 .make-comment{
     margin-left: auto;
     margin-right: auto;
@@ -175,9 +186,10 @@ textarea::-webkit-scrollbar{display: none;}
     right:0;
     width:40px;
     height:100%;
-    background-color: rgb(255, 50, 100);
+    background-color: rgb(125, 142, 255);
     padding: 4px;
 }
+
 .make-comment form input{
     background-color: transparent;
     width: 500px;
@@ -194,17 +206,17 @@ textarea::-webkit-scrollbar{display: none;}
     flex-direction:column ;
     column-gap: 10px;
 }
-
 .comment{
+    font-weight: 400;
     display: flex;
     width: 400px;
     flex-direction:column;
-    border: 1px solid black;
+    border: 1px solid rgb(200, 200, 200);
     padding: 10px;
     margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
-    box-shadow:4px 6px 4px rgba(74, 74, 74, 0.534)  ;
+    box-shadow:4px 6px 4px rgba(22, 22, 22, 0.500)  ;
     position: relative;
 }
 .comment a{
@@ -228,7 +240,7 @@ textarea::-webkit-scrollbar{display: none;}
     margin:0px;
     margin-right:20px ;
     border-radius: 50%;
-    border:2px solid black;
+    border:2px solid rgb(200, 200, 200);
 }
 
 .comment-foot span img{

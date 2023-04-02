@@ -3,10 +3,6 @@
   src: url("/static/fonts/Ubuntu_Mono/UbuntuMono-Regular.ttf") format("truetype");
 }
 @font-face {
-  font-family: "Damion";
-  src: url("/static/fonts/Damion/Damion-Regular.ttf") format("truetype");
-}
-@font-face {
   font-family: "Concert";
   src: url("/static/fonts/Concert_One/ConcertOne-Regular.ttf") format("truetype");
 }
@@ -23,8 +19,8 @@
   src: url("/static/fonts/Amatic_SC/AmaticSC-Bold.ttf") format("truetype");
 }
 @font-face {
-  font-family:"Comic" ;
-  src: url("/static/fonts/Comic_Neue/ComicNeue-Light.ttf") format("truetype");
+  font-family:"Ubuntu" ;
+  src: url("/static/fonts/Ubuntu_Condensed/UbuntuCondensed-Regular.ttf") format("truetype");
 }
 @font-face {
   font-family:"ComicB" ;
@@ -33,7 +29,10 @@
 *{
   margin: 0;
   padding: 0;
-  font-family:"ComicB",sans-serif;
+  /* font-family:"UbuntuMono",sans-serif; */
+  /* font-family: "Concert"; */
+  /* font-family: "Macondo"; */
+  font-family: "Ubuntu";
   font-weight:1000;
 }
 html{
@@ -63,10 +62,11 @@ html{
 
 .body-section{
   display: grid;
-  grid-template-columns:180px 1fr minmax(350px,370px);
+  grid-template-columns:180px 1fr 360px;
   gap:10px;
 }
 .navigation-panel{
+  /* font-family:"Macondo",sans-serif; */
   border-right:3px solid rgb(255, 100, 100) ;
   width:180px;
   height:calc(100vh - 80px);
@@ -93,7 +93,7 @@ html{
 .active-panel{
   background-color: rgb(70, 70, 70);
   height:calc(100vh - 100px);
-  width: 350px;
+  width: 360px;
   overflow-y: scroll;
   scroll-behavior:auto;
   margin-right:100px;

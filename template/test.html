@@ -1,11 +1,6 @@
 {% load static %}
 <style>
-    @font-face {
-        font-family:"ComicB" ;
-        src: url("/static/fonts/Comic_Neue/ComicNeue-Bold.ttf") format("truetype");
-    }
     .profile-list-view{
-        font-family: "ComicB";
         width: 350px;
         height: 100vh;
         display: grid;
@@ -15,10 +10,11 @@
     a{text-decoration: none; color:white;margin:0;padding: 0;}
     .users-accounts{
         display: flex;
-        background-color: rgb(40,40,40);
+        background-color: rgb(70,70,70);
         width: 100%;
         height: 100%;
         border-radius: 20px;
+        border: 1px solid gainsboro;
     }
     .user-profile{
         width:70px;
@@ -41,7 +37,7 @@
     .user-info{
         display: flex;
         flex-direction: column;
-        gap: 5px;
+        gap: 2px;
         align-items: center;
         justify-content: center;
         margin-left:auto ;
@@ -50,6 +46,7 @@
     .user-info span{
         /* text-shadow: 2px 2px 10px rgb(255, 255, 98); */
         color: rgb(255, 255, 255);
+        font-size:14px;
     }
     .actions{
         display: flex;
@@ -57,7 +54,7 @@
         margin-left:auto ;
     }
     .actions button{
-        background-color:transparent;
+        background-color:rgb(80, 103, 255);
         margin-left: auto;
         margin-top: auto;
         margin-bottom: auto;
@@ -65,7 +62,6 @@
         padding: 3px;    
         color: rgb(255, 255, 255);
         /* text-shadow: 2px 2px 10px rgb(255, 255, 98); */
-
     }
 </style>
 
@@ -77,12 +73,12 @@
                     <img loading="lazy" src="{{profile.profile_img.url}}">
                 </div>
                 <div class="user-info">
-                    <span>{{profile.user.first_name}} {{profile.user.last_name}} | @{{profile.user.username}}</span>
-                    <span>Post-134  Likes-2344</span>
-                    <span>Followers-326</span>
+                    <span>{{profile.user.first_name}} {{profile.user.last_name}}</span>
+                    <span>@{{profile.user.username}}</span>
+                    <span>Posts - 134 | Followers - 32K</span>
                 </div>
                 <div class="actions">
-                    <button>Follow</button>
+                    <!-- <button>Follow</button> -->
                 </div>
             </div>
         </a>

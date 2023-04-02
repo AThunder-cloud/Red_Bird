@@ -1,100 +1,96 @@
 @font-face {
-    font-family:"UbuntuMono" ;
-    src: url("/static/fonts/Ubuntu_Mono/UbuntuMono-Regular.ttf") format("truetype");
-  }
-  @font-face {
-    font-family: "Damion";
-    src: url("/static/fonts/Damion/Damion-Regular.ttf") format("truetype");
-  }
-  @font-face {
-    font-family: "Concert";
-    src: url("/static/fonts/Concert_One/ConcertOne-Regular.ttf") format("truetype");
-  }
-  @font-face {
-    font-family: "Macondo";
-    src: url("/static/fonts/Macondo/Macondo-Regular.ttf") format("truetype");
-  }
-  @font-face {
-    font-family:"Bebas" ;
-    src: url("/static/fonts/Bebas_Neue/BebasNeue-Regular.ttf") format("truetype");
-  }
-  @font-face {
-    font-family:"Amatic" ;
-    src: url("/static/fonts/Amatic_SC/AmaticSC-Bold.ttf") format("truetype");
-  }
-  @font-face {
-    font-family:"Comic" ;
-    src: url("/static/fonts/Comic_Neue/ComicNeue-Light.ttf") format("truetype");
-  }
-  @font-face {
-    font-family:"ComicB" ;
-    src: url("/static/fonts/Comic_Neue/ComicNeue-Bold.ttf") format("truetype");
-  }
-  *{
-    margin: 0;
-    padding: 0;
-    font-family:"ComicB",sans-serif;
-    font-weight:1000;
-  }
-  html{
-    background-color: rgb(60, 60, 60);
-    scroll-behavior: smooth;
-  
-  }
-  .head-section {
-    display:flex;
-    flex-direction:column;
-    row-gap: 5px;
-    width:100vw;
-    height:100vh;
-  }
-  .search-tab{
-    background-color: rgb(40, 40, 40);
-    border-bottom: 1px solid rgb(255, 100, 100);
-    width:100%;
-    height:fit-content;
-    padding:10px 20px;
-  }
-  
-  .body-section{
-    display: grid;
-    grid-template-columns:180px 1fr 1fr;
-    gap:10px;
-  }
-  .navigation-panel{
-    border-right:3px solid rgb(255, 100, 100) ;
-    width:180px;
-    height:calc(100vh - 80px);
-    display:grid;
-    grid-template-rows:50% 50%;
-  }
-  
-  .post-container{
-    display: grid;
-    grid-template-columns:repeat(auto-fill,minmax(540px,1fr));
-    grid-auto-rows:max-content;
-    gap:10px;
-    width:100%;
-    height:calc(100vh - 100px);
-    overflow-y: scroll;
-    scroll-behavior: smooth;
-    margin-right: auto;
-  }
-  .post-container::-webkit-scrollbar{
-    display: none;
-  }
-  
-  .active-panel{
-    width: 100%;
-    height:calc(100vh - 100px);
-    background-color:white;
-    border: rgb(255, 100, 100);
-    overflow-y: scroll;
-    scroll-behavior:auto;
-  }
-  
-  .active-panel::-webkit-scrollbar{
-    display: none;
-  }
-  
-  
+  font-family:"UbuntuMono" ;
+  src: url("/static/fonts/Ubuntu_Mono/UbuntuMono-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Concert";
+  src: url("/static/fonts/Concert_One/ConcertOne-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Macondo";
+  src: url("/static/fonts/Macondo/Macondo-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family:"Bebas" ;
+  src: url("/static/fonts/Bebas_Neue/BebasNeue-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family:"Amatic" ;
+  src: url("/static/fonts/Amatic_SC/AmaticSC-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family:"Ubuntu" ;
+  src: url("/static/fonts/Ubuntu_Condensed/UbuntuCondensed-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family:"ComicB" ;
+  src: url("/static/fonts/Comic_Neue/ComicNeue-Bold.ttf") format("truetype");
+}
+*{
+  margin: 0;
+  padding: 0;
+  font-family: "Ubuntu";
+  font-weight:1000;
+}
+html{
+  background-color: rgb(60, 60, 60);
+  scroll-behavior: smooth;
+
+}
+.head-section {
+  display:flex;
+  flex-direction:column;
+  row-gap: 5px;
+  width:100vw;
+  height:100vh;
+}
+.search-tab{
+  background-color: rgb(40, 40, 40);
+  border-bottom: 1px solid rgb(255, 100, 100);
+  width:100%;
+  height:fit-content;
+  padding:10px 20px;
+}
+
+.body-section{
+  display: grid;
+  grid-template-columns:180px 1fr 1fr;
+  gap:10px;
+}
+.navigation-panel{
+  border-right:3px solid rgb(255, 100, 100) ;
+  width:180px;
+  height:calc(100vh - 80px);
+  display:grid;
+  grid-template-rows:50% 50%;
+}
+
+.post-container{
+  display: grid;
+  grid-template-columns:repeat(auto-fill,minmax(540px,1fr));
+  grid-auto-rows:max-content;
+  gap:10px;
+  width:100%;
+  height:calc(100vh - 100px);
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  margin-right: auto;
+}
+.post-container::-webkit-scrollbar{
+  display: none;
+}
+
+.active-panel{
+  width: 100%;
+  height:calc(100vh - 100px);
+  /* background-color:rgba(147, 147, 147, 0.9); */
+  background-color: rgb(70, 70, 70);
+  border: rgb(255, 100, 100);
+  overflow-y: scroll;
+  scroll-behavior:auto;
+}
+
+.active-panel::-webkit-scrollbar{
+  display: none;
+}
+
