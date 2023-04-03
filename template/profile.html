@@ -48,15 +48,25 @@
     .profile-img{
         position: relative;
         height: 240px;
-        background-color: rgba(220, 220, 220, 0.73);
+        background-color: rgb(70,70,70);
+        /* background-image:linear-gradient(to right, red, blue) ; */
+        /* background-image: url(/static/default-img/); */
     }
     .profile-img a{
+        text-decoration: none;color:black ;
+        background-color: rgb(255, 255, 255);
+        border: 1px solid black;
+        padding: 5px;
+    }
+    .editButton{
         position: absolute;
         bottom: 0;
         right: 0;
-        text-decoration: none;color:black ;
-        border: 1px solid black;
-        padding: 5px;
+    }
+    .homeButton{
+        position: absolute;
+        bottom: 0;
+        left: 0;
     }
     .profile-panel img{
         display: block;
@@ -136,17 +146,19 @@
 </style>
 
 <body>
+    {% include 'delete.html' %}
     <div class="container">
         <div class="profile-panel">
             <div class="profile-img">
                 <img src="{% profile_img user.id %}" alt="No Profile">
                 {% if user == request.user %}
-                <a href="{% url 'edit-profile' %}">Edit Profile</a>
+                <a class="editButton" href="{% url 'edit-profile' %}">Edit Profile</a>
                 {% endif %}
+                <a class="homeButton" href="{% url 'index' %}">Home Page</a>
             </div>
             <hr>
             <span>{{user.first_name}} {{user.last_name}} |<small> @{{user.username}}</small></span>
-            <span><small>Posts - 73 followers - 36</small></span>
+            <span><small>Posts - {{post_count}} followers - 36</small></span>
             <hr>
             <textarea placeholder="Hi!!. There welcome to my profile" readonly>{{user.profile.bio}}</textarea>
             <script src="/static/js/textareaExtender.js"></script>

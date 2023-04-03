@@ -12,7 +12,7 @@ likeBtn.addEventListener('click', function(){
     if(xhr.status === 200){
       var response = JSON.parse(xhr.responseText);
       if(response.liked){
-        heartSvg.setAttribute("fill", "red");
+        heartSvg.setAttribute("fill", "rgb(255,40,40)");
       }else{
         heartSvg.setAttribute("fill", "grey");
       }

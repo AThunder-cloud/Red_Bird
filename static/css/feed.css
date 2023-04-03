@@ -1,14 +1,14 @@
 .post-defination{
     display: flex;
     flex-direction: column;
-    background-color:rgb(224, 224, 224);
+    background-color:whitesmoke;
     color:black;
     width:540px;
     min-width:300px;
     height:fit-content;
     border-radius:10px;
     margin: auto;
-    border: 1px solid gainsboro;
+    border: 1px solid whitesmoke;
 }
 .post-head-section{
     display: flex; 
@@ -28,9 +28,22 @@
 
 .user-name span:first-child{
     font-size: 18px;
+    font-weight: 500;
 }
 .user-name span:last-child{
-    font-size: 12px;
+    font-size: 12px; font-weight: 500;
+    background-color: rgb(166, 245, 255); color:  rgb(0, 73, 110);
+    width: fit-content; padding:1px 2px 1px 2px;
+    border-radius: 10px; border: 1px solid rgb(0, 73, 110);
+
+}
+.post-head-section a{text-decoration: none; color: rgb(255, 255, 255); margin: 3px;}
+.feed-date{margin:auto 20px auto 20px;}
+.feed-date span{
+    font-size: 14px; font-weight: 400;
+    width: fit-content; padding:1px 2px 1px 2px; 
+    background-color: chartreuse; color: rgb(0, 60, 6);
+    border-radius: 10px; border: 1px solid rgb(0, 60, 6) ;
 }
 .post-head-section img{
     object-fit: cover;
@@ -39,7 +52,11 @@
     margin:0px;
     border-radius: 50%;
 }
-
+.feed-genres{
+    display: flex;
+    gap:5px;
+    margin:auto 20px auto 0;
+}
 #genre-icon{
     /* background-color: rgb(255, 255, 255); */
     object-fit:contain;
@@ -59,8 +76,6 @@
     left: 50%;
     transform: translateX(-50%);
 }
-.post-head-section a{text-decoration: none; color: rgb(255, 255, 255); margin: 3px;}
-.post-head-section h6{ color:rgb(255, 255, 255);margin: 7px;}
 
 .post-head-section span img{
     width: 20px;

@@ -101,9 +101,11 @@ def index(request):
 def user_profile(request, pk):
 	user = User.objects.get(id=pk)
 	posts = Post.objects.filter(author= user.profile)
+	post_count = posts.count()
 	context={
 		'user':user,
 		'posts':posts,
+		"post_count":post_count
 	}
 	return render(request, 'profile.html',context)
 
@@ -149,7 +151,6 @@ def create_post(request):
 
 @csrf_exempt
 def delete(request, item_id):
-	print('deleting......')
 	post = get_object_or_404(Post, id=item_id)
 	if request.method == 'POST':
 		post.delete()

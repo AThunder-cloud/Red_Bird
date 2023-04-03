@@ -35,8 +35,11 @@ def delete_old_profile_image(sender, instance, **kwargs):
     new_image = instance.profile_img
     if not old_image == new_image:
         # If the old image is not the default profile image, delete it.
-        if os.path.exists(old_image.path) and old_image.path != os.path.join(settings.MEDIA_ROOT, 'defualt-user.png'):
-            os.remove(old_image.path)
+        if os.path.exists(old_image.path): 
+            if os.path.basename(old_image.path) == 'defualt-user.png':
+                return False
+            else:
+                os.remove(old_image.path)
         else:
             # If the old image does not exist in the file system, delete it from the default storage.
             default_storage.delete(old_image.name)
@@ -49,8 +52,8 @@ def delete_profile_image(sender, instance, **kwargs):
     profile_image = instance.profile_img
     if profile_image:
         # Check if the profile image being deleted is the default image
-        if profile_image.path == os.path.join(settings.MEDIA_ROOT, 'default_profile.png'):
-            return
+        if os.path.basename(profile_image.path) == 'defualt-user.png':
+            return False
         # If the profile image exists in the file system, delete it.
         elif os.path.exists(profile_image.path):
             os.remove(profile_image.path)

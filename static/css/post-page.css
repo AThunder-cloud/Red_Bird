@@ -37,7 +37,8 @@
     min-width: 750px;
     height:auto; 
     /* background-color:rgb(125, 142, 255); */
-    background-color: rgb(235, 255, 105);
+    /* background-color: rgb(235, 255, 105); */
+    background-color: whitesmoke;
     border: 2px solid black;
     cursor: pointer; 
     padding:5px;
@@ -69,17 +70,21 @@
     font-weight: 500;
 }
 .profile-user-name span:last-child{
-    font-size: 14px;
-    font-weight: 700;
+    font-size: 14px; font-weight: 700;
+    background-color: rgb(166, 245, 255); color:  rgb(0, 73, 110);
+    width: fit-content; padding:2px 4px 4px 4px;
+    border-radius: 10px; border: 1px solid rgb(0, 73, 110);
 }
+.post-date{margin:auto 20px auto 20px;}
 .post-date span{
     font-size: 22px;font-weight: 700;
-    color: rgb(0, 0, 0);
-    margin-left:10px;
+    background-color: chartreuse; color: rgb(0, 102, 10);
+    width: fit-content; padding:2px 4px 2px 4px; 
+    border-radius: 10px; border: 1px solid rgb(0, 60, 6) ;
 }
 .content-genres{
     display: flex;
-    margin-left: auto;
+    margin:auto 20px auto auto;
     gap:20px;
 }
 .content-genres img{
@@ -186,7 +191,7 @@ textarea::-webkit-scrollbar{display: none;}
     right:0;
     width:40px;
     height:100%;
-    background-color: rgb(125, 142, 255);
+    background-color: rgb(166, 245, 255);;
     padding: 4px;
 }
 
@@ -270,7 +275,7 @@ textarea::-webkit-scrollbar{display: none;}
 }
 
 #post-like-button svg{
-    filter: drop-shadow(5px 5px 4px rgb(76, 76, 76));
+    filter: drop-shadow(5px 5px 4px rgb(0, 0, 0));
 }
 
 

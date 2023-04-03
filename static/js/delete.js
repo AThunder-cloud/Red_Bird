@@ -1,6 +1,6 @@
 var popup = document.querySelector('.popup');
 var delBtn = document.querySelector('.Confirm-delete');
-var post_id;
+var item_name;
 var post_title;
 var csrf_token;
 
@@ -8,14 +8,12 @@ function deleteModal(postId){
     popup.style.visibility="visible";
     popup.style.top= "50%";
     popup.style.transform="translate(-50%,-50%) scale(1)";
-    post_id = postId.value1;
-    post_title = postId.value2;
-    csrf_token = postId.value3;
-    document.getElementById("mytext").innerHTML = post_id;
-    document.getElementById("mytext2").innerHTML = post_title;
+    post_title = postId.value1;
+    csrf_token = postId.value2;
+    item_name = postId.value3;
+    document.getElementById("valueName").innerHTML = post_title;
+    document.getElementById("itemName").innerHTML = item_name;
 }
-
-
 
 function passValues(token){
     $.ajax({
@@ -48,19 +46,3 @@ function closeModal(){
     popup.style.transform="translate(-50%,-50%) scale(.1)";
     popup.style.visibility="hidden"; 
 }
-
-// function jumpPost(postId){
-//     post_id = postId.value1;
-//     csrf_token = postId.value2;
-//     $.ajax({
-//         type:'POST',
-//         url:"/postpage/" + post_id + '/',
-//         data: {
-//             csrfmiddlewaretoken:csrf_token,   
-//         },
-//         contentType:"application/json; charset=utf-8",
-//         dataType:"json",
-//     });
-
-// }
-// ondblclick="jumpPost({value1:'{{post.id}}',value2:'{{csrf_token}}'})"

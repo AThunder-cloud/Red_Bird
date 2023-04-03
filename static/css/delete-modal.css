@@ -1,5 +1,5 @@
 .popup{
-    width:400px;
+    width:450px;
     background-color:rgb(255, 100, 100) ;
     border:1px solid black ;
     border-radius:6px ;
@@ -8,40 +8,24 @@
     left: 50%;
     transform: translate(-50%,-50%) scale(0.1); 
     text-align: center;
-    padding: 0 30px 30px ;
+    padding:40px 30px;
     color: #333;
     visibility: hidden;
     transition:transform .7s ,top 0.4s;
     z-index: +2;
 }
-/* scale to decrese size */
-.popup img{
-    width: 100px;
-    height: 100px;
-    border: 1px solid black;
-    border-radius: 50%;
-    margin-top: -50px;
-    box-shadow:0 2px 5px rgba(0, 0, 0, 0.2) ;
-}
-
-.popup h2{
+.popup form span{
     font-size:20px;
     color: rgb(0, 0, 0);
-    font-weight: 500;
-    margin: 30px 0 10px;
+    font-weight: 600;
 }
-
 .popup button{
-    width:100px;
-    margin-top: 50px ;
-    padding: 10px 0;
-    background-color: rgb(235, 255, 105);
-    color: rgb(0, 0, 0);
-    border: 0;
+    background-color: chartreuse; color: rgb(0, 60, 6);border: 1px solid rgb(0, 60, 6) ;
+    width:100px;margin:40px 10px 0 10px; padding: 10px 0;
     outline: none;
     font-size: 18px;
     border-radius:4px;
     cursor: pointer;
-    box-shadow:0 5px 5px rgba(0, 0, 0, 0.2) ;
-
+    box-shadow:0 5px 10px rgba(0, 0, 0, 0.5) ;
 }
+.popup button:last-child{border:1px solid rgb(0,73,110);background-color: rgb(166, 245, 255); color:  rgb(0, 73, 110);}

@@ -11,8 +11,9 @@
 <div class="popup" id="popup">
 	<form>
 		{% csrf_token %}
-		<h2>Are you sure you want to delete <p id="mytext2"></p>?</h2>
-		<p id="mytext"></p>
+		<span>Are you sure you want to delete This:<p id="itemName"></p></span>
+		<span id="valueName"></span>
+		<br>
 		<button type="button" class="close" onclick="closeModal()">Close</button>
 		<button type="button" class="Confirm-delete" onclick="passValues()">Delete</button>
 	</form>
