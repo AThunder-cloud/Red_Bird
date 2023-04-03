@@ -86,9 +86,9 @@ def index(request):
 	).distinct()
 	images = Post.objects.only('image')
 	profiles = Profile.objects.filter(
-		Q(user__username__icontains=q),
-		Q(user__first_name__icontains=q),
-		Q(user__last_name__icontains=q),
+		Q(user__username__icontains=q) |
+		Q(user__first_name__icontains=q) |
+		Q(user__last_name__icontains=q)
 		).distinct()
 	context = {
 	'posts' : posts,
@@ -201,7 +201,13 @@ def post_page(request, post_id):
 	return render(request,'main.html',context)
 
 def profile_list(request):
-	profiles = Profile.objects.all()
+	if request.method == "GET":
+		q = request.GET.get('q', '')
+	profiles = Profile.objects.filter(
+		Q(user__username__icontains=q) |
+		Q(user__first_name__icontains=q) |
+		Q(user__last_name__icontains=q)
+	).distinct()
 	context={'profiles':profiles}
 	return render(request, 'test.html' , context)
 
