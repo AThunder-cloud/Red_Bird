@@ -102,11 +102,22 @@ def user_profile(request, pk):
 	user = User.objects.get(id=pk)
 	posts = Post.objects.filter(author= user.profile)
 	post_count = posts.count()
-	context={
-		'user':user,
-		'posts':posts,
-		"post_count":post_count
-	}
+	follower=request.user
+	follow_exists = Followers.objects.filter(follower=follower, user=user).exists()
+	if follow_exists:
+		context={
+			'user':user,
+			'posts':posts,
+			"post_count":post_count,
+			'follow_exists': True
+		}
+	else:
+		context={
+			'user':user,
+			'posts':posts,
+			"post_count":post_count,
+			'follow_exists': False
+		}		
 	return render(request, 'profile.html',context)
 
 def post(request):
@@ -266,3 +277,25 @@ def edit_profile(request):
 			profile.save()
 			return redirect('profile',pk=request.user.id)
 	return render(request, 'edit-profile.html',{'profile' : profile})
+
+@login_required
+def follow(request):
+	if request.method == 'POST':
+		user_id = request.POST.get("user_id")
+		user = User.objects.get(id=user_id)
+		follower = request.user
+		if user == follower:
+			messages.error(request, "You cannot follow yourself")
+		else:
+			# check if the follow relationship already exists
+			follow_exists = Followers.objects.filter(follower=follower, user=user).exists()
+			if follow_exists:
+				# unfollow user
+				Followers.objects.filter(follower=follower, user=user).delete()
+				return redirect('profile', pk=user.id)
+			else:
+				# create new follow relationship
+				follow = Followers(follower=follower, user=user)
+				follow.save()
+				return redirect('profile', pk=user.id)
+	return redirect('profile',pk=user_id)

@@ -75,10 +75,12 @@
                 <div class="user-info">
                     <span>{{profile.user.first_name}} {{profile.user.last_name}}</span>
                     <span>@{{profile.user.username}}</span>
-                    <span>Posts - 134 | Followers - 32K</span>
+                    <span>
+                        Posts-{{profile.post_set.count}}
+                    </span>
+                    <span>Followers-{{profile.user.followers.count}} Following-{{profile.user.following.count}}</span>
                 </div>
-                <div class="actions">
-                    <!-- <button>Follow</button> -->
+                <div class="actions">                      
                 </div>
             </div>
         </a>

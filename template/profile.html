@@ -1,6 +1,7 @@
 {% load static %}
 {% load profile_img_tag %}
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="shortcut icon" href="/static/default-img/RedBird.ico" type="image/x-icon">
 <style>
     @font-face {
         font-family: "Ubuntu";
@@ -67,6 +68,15 @@
         position: absolute;
         bottom: 0;
         left: 0;
+    }
+    .profile-img button{
+        text-decoration: none;color:black ;
+        background-color: rgb(255, 255, 255);
+        border: 1px solid black;
+        padding: 5px;
+        position: absolute;
+        bottom: 0;
+        right: 0;
     }
     .profile-panel img{
         display: block;
@@ -153,6 +163,16 @@
                 <img src="{% profile_img user.id %}" alt="No Profile">
                 {% if user == request.user %}
                 <a class="editButton" href="{% url 'edit-profile' %}">Edit Profile</a>
+                {% elif user != request.user %}
+                <form action="{% url 'follow_unfollow' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="user_id" value="{{user.id}}">
+                    {% if follow_exists %}
+                        <button type="submit">Unfollow</button>
+                    {% else %}
+                        <button type="submit">Follow</button>
+                    {% endif %}
+                </form>
                 {% endif %}
                 <a class="homeButton" href="{% url 'index' %}">Home Page</a>
             </div>
