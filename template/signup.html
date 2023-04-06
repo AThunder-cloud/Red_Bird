@@ -1,15 +1,11 @@
 <link rel="shortcut icon" href="/static/default-img/RedBird.ico" type="image/x-icon">
 <style>
   @font-face {
-    font-family:"Concert" ;
-    src: url("/static/fonts/Concert_One/ConcertOne-Regular.ttf") format("truetype");
-  }
-  @font-face {
-    font-family:"Comic" ;
-    src: url("/static/fonts/Comic_Neue/ComicNeue-Bold.ttf") format("truetype");
+    font-family:"Ubuntu" ;
+    src: url("/static/fonts/Ubuntu_Condensed/UbuntuCondensed-Regular.ttf") format("truetype");
   }
   *{
-    font-family:"Concert";
+    font-family:"Ubuntu";
     font-weight: 500;
     background-color: rgb(41, 41, 41);
   }
@@ -41,7 +37,6 @@ form{
 .container label{
     font-size: 16px;
 }
-
 input[type=text], input[type=password], input[type=cpassword], input[type=email]{
     font-family:inherit;
     background-color: rgba(73, 73, 73, 0.555);
@@ -51,10 +46,11 @@ input[type=text], input[type=password], input[type=cpassword], input[type=email]
     color: white;
     border:1px solid #ffffff;
     border-radius: 10px;
+    width: 100%;
 }
 
 input[type=submit]{
-    width: 100px;
+    width: 300px;
     height:fit-content;
     font-family: inherit;
     font-size:20px;
@@ -64,6 +60,14 @@ input[type=submit]{
     margin-right: auto;
     padding:2px 0 2px 0;
 }
+
+.div{
+  display: flex;
+}
+.div label{
+  margin-right: auto;
+}
+
 span{
   margin-left: auto;
   margin-right: auto;
@@ -79,11 +83,24 @@ a,b{
 		margin-right: auto;
 	}
 	h4{
-		font-family:"Concert";
+		font-family:inherit;
 		color: rgb(250, 255, 107);
 		font-size: 30px;
 	}
 
+  #submit-btn[disabled] {
+    background-color: grey;
+    color: black;
+  }
+  #submit-btn[enabled]{
+    background-color: rgb(255,70,70);
+  }
+
+  .password-criteria{
+    font-size: 12px;
+    font-weight: 300px;
+    color: yellow;
+  }
 </style>
 
 <div class="container">
@@ -91,30 +108,36 @@ a,b{
     {% csrf_token %}
       <span class="form-title">SIGN UP</span>
       <br>
-      <div>
-        <label for="firstname">First Name</label>
-        <input type="text" name="fname" autocomplete="off" required>
-
-        <label for="lastname">Last Name</label>
-        <input type="text" name="lname" autocomplete="off" required>
+      <div class="div">
+        <label for="firstname">First Name* :</label>
+        <label for="lastname">Last Name* :</label>
+      </div>
+      <div class="div">
+        <input type="text" value="{{fname}}" placeholder="Enter your first name" name="fname" autocomplete="off" required>
+        <input type="text" value="{{lanme}}" placeholder="Enter your last name" name="lname" autocomplete="off" required>
       </div>
 
-      <label for="username">Username</label>
-      <input type="text" name="username" autocomplete="off" required>
+      <label for="username">Username* :</label>
+      <input type="text" vlue="{{username}}" placeholder="Enter a username of your Choice !" name="username" autocomplete="off" required>
 
-      <label for="email">Email</label>
-      <input type="email" name="email">
+      <label for="email">Email:</label>
+      <input type="email" value="{{email}}" placeholder="newuser@gmail.com" name="email">
 
-      <label for="password">Password</label>
-      <input type="password"  name="password" required>
+      <label for="password">Password* :</label>
+      <input type="password" value="{{password}}" id="password" name="password" required>
 
-      <label for="cpassword">Confirm Password</label>
-      <input type="cpassword" name="cpassword" required>
-
-      <input type="submit" value="Sign Up">
-      <span>Already Have an account?<a href="{% url 'signin' %}">Log In</a></span>
+      <label for="cpassword">Confirm Password* :</label>
+      <input type="cpassword" value="{{password}}" id="cpassword" name="cpassword" required>
+      <span class="password-criteria">
+      Password Criteria:
+      Minimum length of 8 characters,  
+      At least one lowercase and one uppercase letter, 
+      At least one number and Symbol (such as !, @, #, etc.)
+      </span>
+      <input type="submit" id="submit-btn" value="Create Account" disabled>
+      <span>Already Have an account ?<a href="{% url 'signin' %}"> Log In</a></span>
       
-      <span><center>By clicking the <b>Sign up button</b>,you are creating an account,
+      <span><center>By clicking the <b>Sign up button</b>, you are creating an account,
       and agree to <b>Red Bird's</b> Terms of Service and Privacy Policy</center></span>
 </form>
 </div>
@@ -124,3 +147,41 @@ a,b{
 <div class="message-box"><h4>{{message}}</h4></div>
 {% endfor %}
 {% endif %}
+
+  
+<script>
+  // Get the password, cpassword, and submit button elements
+  const passwordInput = document.getElementById("password");
+  const cpasswordInput = document.getElementById("cpassword");
+  const submitBtn = document.getElementById("submit-btn");
+
+  // Declare the isStrongPassword variable outside the input event listeners
+  let isStrongPassword = false;
+
+  // Add an event listener to the password input field
+  passwordInput.addEventListener("input", () => {
+    // Check if the password is strong enough
+    const password = passwordInput.value;
+    const lowercaseRegex = /[a-z]/;
+    const uppercaseRegex = /[A-Z]/;
+    const numberRegex = /\d/;
+    const symbolRegex = /[^\w\s]/;
+    isStrongPassword = password.length >= 8 && lowercaseRegex.test(password) && uppercaseRegex.test(password) && numberRegex.test(password) && symbolRegex.test(password);
+
+    // Enable or disable the submit button based on the password strength and cpassword match
+    submitBtn.disabled = !isStrongPassword || password !== cpasswordInput.value;
+    if (isStrongPassword && password === cpasswordInput.value) {
+      submitBtn.disabled = false;
+    }
+  });
+
+  // Add an event listener to the cpassword input field
+  cpasswordInput.addEventListener("input", () => {
+    // Enable or disable the submit button based on the password strength and cpassword match
+    submitBtn.disabled = passwordInput.value !== cpasswordInput.value || !isStrongPassword;
+    if (isStrongPassword && passwordInput.value === cpasswordInput.value) {
+      submitBtn.disabled = false;
+    }
+  });
+
+</script>

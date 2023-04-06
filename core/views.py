@@ -24,10 +24,24 @@ def signup(request):
 		if password == password2:
 			if User.objects.filter(email=email).exists():
 				messages.info(request, 'Email Taken')
-				return redirect('signup')
+				context = {
+					"fname" :fname,
+					"lanme" :lname,
+					"username":username,
+					"email" :email,
+					"password":password
+				}
+				return render(request,'signup.html',context)
 			elif User.objects.filter(username=username).exists():
 				messages.info(request, 'Username Taken')
-				return redirect('signup')
+				context = {
+					"fname" :fname,
+					"lanme" :lname,
+					"username":username,
+					"email" :email,
+					"password":password
+				}
+				return render(request,'signup.html',context)
 			else:
 				user = User.objects.create_user(
 					first_name=fname, 
