@@ -10,6 +10,7 @@ staticfiles
 
 assets
 run.sh
+xrun.sh
 # Backup files # 
 *.bak 
 

@@ -32,9 +32,6 @@
 
     <div class="content-body">
         <textarea spellcheck="false" readonly>{{post.text_body}}</textarea>
-    </div>
-    <div class="postImage">
-        <img loading="lazy" src="{{post.image.url}}" alt="">
         <button data-post-id="{{post.id}}" id="post-like-button">
             {% if is_liked %}
             <svg id="heart-svg" xmlns="http://www.w3.org/2000/svg" fill="rgb(255,40,40)" height="70" viewBox="0 96 960 960" width="70">
@@ -46,6 +43,12 @@
             </svg>
             {% endif %}
         </button>
+    </div>
+    <div class="postImage">
+        {% if post.image %}
+        <img loading="lazy" src="{{post.image.url}}" alt="">
+        {% endif %}
+
     </div>
     <div class="comments-container">
         <div class="make-comment">

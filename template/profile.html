@@ -49,31 +49,54 @@
     .profile-img{
         position: relative;
         height: 240px;
-        background-color: rgb(70,70,70);
+        background-color: rgb(4, 4, 4);
         /* background-image:linear-gradient(to right, red, blue) ; */
         /* background-image: url(/static/default-img/); */
     }
     .profile-img a{
-        text-decoration: none;color:black ;
-        background-color: rgb(255, 255, 255);
-        border: 1px solid black;
-        padding: 5px;
+        text-decoration: none;
+        color:rgb(207, 207, 207) ;
+        text-shadow:2px 2px 10px red;
+        border-radius: 10px;
+        border: 2px solid transparent;
+        font-size: 16px;
+        font-weight: 500;
+        margin:15px 15px ;
+        padding:10px;
+
     }
     .editButton{
         position: absolute;
-        bottom: 0;
+        top: 0;
         right: 0;
+    }
+    .editButton:hover{
+        color: rgb(255, 255, 255);
+        border: 2px solid white;
+        text-shadow:4px 4px 10px rgb(255, 67, 67);
+        box-shadow: 0 0 10px 5px rgb(255, 50, 50);   
     }
     .homeButton{
         position: absolute;
-        bottom: 0;
+        top: 0;
         left: 0;
     }
+    .homeButton:hover{
+        color: rgb(255, 255, 255);
+        border: 2px solid white;
+        text-shadow:4px 4px 10px rgb(255, 67, 67);
+        box-shadow: 0 0 10px 5px rgb(255, 50, 50);
+    }
+    
     .profile-img button{
-        text-decoration: none;color:black ;
-        background-color: rgb(255, 255, 255);
-        border: 1px solid black;
-        padding: 5px;
+        text-decoration: none;color:rgb(255, 255, 255) ;
+        background-color: transparent;
+        border: 2px solid white;
+        font-size: 16px;
+        font-weight: 500;
+        text-shadow:4px 4px 10px rgb(255, 67, 67);
+        box-shadow: 0 0 10px 5px rgb(255, 50, 50);
+        margin:15px 15px ;
         position: absolute;
         bottom: 0;
         right: 0;

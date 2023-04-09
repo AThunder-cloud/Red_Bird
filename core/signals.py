@@ -12,12 +12,14 @@ def delete_post_image(sender, instance, **kwargs):
     """
     Deletes the image associated with the post when the post is deleted.
     """
-    # Get the path of the image file.
-    image_path = instance.image.path
+    # Check if the post has an associated image.
+    if instance.image:
+        # Get the path of the image file.
+        image_path = instance.image.path
 
-    # If the image file exists, delete it.
-    if os.path.exists(image_path):
-        os.remove(image_path)
+        # If the image file exists, delete it.
+        if os.path.exists(image_path):
+            os.remove(image_path)
 
 @receiver(pre_save, sender=Profile)
 def delete_old_profile_image(sender, instance, **kwargs):

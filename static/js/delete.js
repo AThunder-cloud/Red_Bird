@@ -3,6 +3,7 @@ var delBtn = document.querySelector('.Confirm-delete');
 var item_name;
 var post_title;
 var csrf_token;
+var post_id;
 
 function deleteModal(postId){
     popup.style.visibility="visible";
@@ -11,6 +12,7 @@ function deleteModal(postId){
     post_title = postId.value1;
     csrf_token = postId.value2;
     item_name = postId.value3;
+    post_id = postId.value4;
     document.getElementById("valueName").innerHTML = post_title;
     document.getElementById("itemName").innerHTML = item_name;
 }
