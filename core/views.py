@@ -162,6 +162,7 @@ def create_post(request):
 	genres = Genre.objects.all()
 	return render(request, 'create-post.html',{'genres':genres})      
 
+@login_required(login_url="signin")
 @csrf_exempt
 def delete(request, item_id):
 	post = get_object_or_404(Post, id=item_id)
@@ -225,7 +226,7 @@ def profile_list(request):
 	context={'profiles':profiles}
 	return render(request, 'test.html' , context)
 
-@login_required
+@login_required(login_url="signin")
 def add_comment(request):
 	if request.method == 'POST':
 		post_id = request.POST.get("post_id")
@@ -240,7 +241,7 @@ def add_comment(request):
 	else:
 		return render(request, 'main.html', {'post_id': post_id})
 
-@login_required
+@login_required(login_url="signin")
 def delete_comment(request, item_id):
 	comment = Comment.objects.get(id=item_id)
 	print(comment)
@@ -255,7 +256,7 @@ def delete_comment(request, item_id):
 		comment.delete()
 		return redirect('postpage', post_id=post_id)
 
-@login_required
+@login_required(login_url="signin")
 def edit_profile(request):
 	user = request.user
 	profile = Profile.objects.get(user=user)
@@ -280,7 +281,7 @@ def edit_profile(request):
 			return redirect('profile',pk=request.user.id)
 	return render(request, 'edit-profile.html',{'profile' : profile})
 
-@login_required
+@login_required(login_url="signin")
 def follow(request):
 	if request.method == 'POST':
 		user_id = request.POST.get("user_id")
