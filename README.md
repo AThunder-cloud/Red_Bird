@@ -33,7 +33,7 @@ To run the "RED BIRD" project locally, follow these steps:
 5. Manage your profile and update your personal information.
 
 ## Screenshots
-![Homepage](/static)
+![Homepage](/static/default-img/RED-BIRD.png)
 ![Profile Page](/path/to/profile-screenshot.png)
 <!-- Include relevant screenshots or images showcasing different sections or features of the "RED BIRD" website -->
 
