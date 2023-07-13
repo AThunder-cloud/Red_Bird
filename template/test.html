@@ -20,7 +20,7 @@
         width:70px;
         height:70px;
         border-radius: 50%;
-        border: 5px solid white;
+        border: 3px solid white;
         margin-top: auto;
         margin-bottom: auto;
         margin-left: 10px;
@@ -85,16 +85,21 @@
             </div>
         </a>
         <script>
-            var colors = ['#f74a4a', '#f7784a', '#ffe16b', '#d3ff6b','#aeff6b', 
-            '#81ff6b','#a7fad3','#57f7f7','#57baf7','#578ff7','#474afc',
-            '#7447fc', '#a547fc', '#d547fc', '#f947fc', '#fc47b1','#fc476b']
-            $(".users-accounts").each(()=>{
-                var randomIndex = Math.floor(Math.random() * colors.length);
-                var randomColor = colors[randomIndex];
-                $('.user-info span').css({"text-shadow" : "2px 2px 10px " + randomColor,});
-                $('.user-profile').css({"box-shadow" : "0px 0px 20px 2px" + randomColor,});
-                $('.actions button').css({"text-shadow" : "2px 2px 15px " + randomColor,});
+            $(document).ready(function() {
+                var colors = ['#f74a4a', '#f7784a', '#ffe16b', '#d3ff6b', '#aeff6b', 
+                            '#81ff6b', '#a7fad3', '#57f7f7', '#57baf7', '#578ff7',
+                            '#474afc', '#7447fc', '#a547fc', '#d547fc', '#f947fc',
+                            '#fc47b1', '#fc476b'];
+
+                $(".users-accounts").each(function() {
+                    var randomIndex = Math.floor(Math.random() * colors.length);
+                    var randomColor = colors[randomIndex];
+                    $(this).find('.user-info span').css({"text-shadow" : "2px 2px 10px " + randomColor});
+                    $(this).find('.user-profile').css({"box-shadow" : "0px 0px 20px 2px " + randomColor});
+                    $(this).find('.actions button').css({"text-shadow" : "2px 2px 15px " + randomColor});
+                });
             });
+
         </script>
     {% endfor %}
 </div>
